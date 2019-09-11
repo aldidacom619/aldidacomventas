@@ -1,7 +1,8 @@
 <?php
 
 class Inicio extends CI_Controller
-{
+{  
+
 	function __construct(){
 		parent::__construct();	
 		$this->_is_logued_in();	
@@ -24,15 +25,17 @@ class Inicio extends CI_Controller
 		$dato['usuario'] = $this->session->userdata('usuario');
 		$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 		$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
-		$this->load->view("Inicio/cabecera");
-		$this->load->view("Inicio/cabecera");		
-		$this->load->view("Inicio/menu",$dato);		
-		//$this->load->view("Inicio/cuerpo");		
-		$this->load->view("Inicio/pie");
+		$this->load->view('Inicio/cabecera');
+		$this->load->view('Inicio/cabecera');		
+		$this->load->view('Inicio/menu',$dato);		
+		
+		$this->load->view('Inicio/pie');
+
+		
 	}
 	function prueba()
 	{
-		echo "prueba uno";
+		echo 'prueba uno';
 	}
 }
 ?>

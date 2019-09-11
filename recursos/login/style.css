@@ -22,7 +22,7 @@ html, html .halflings {
 [class*=" glyphicon-regular-"] {
   font-family: 'Glyphicons';
   font-weight: normal;
-  font-style: normal;
+  font-style: normal; 
   text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
   /* sprites.less reset */
@@ -7716,10 +7716,9 @@ body.error .wrapper .buttons {
 }
 
 .login {
-  
-
+background: #005462;
  
- 
+ /*
 background: rgba(241,63,39,1);
 background: -moz-radial-gradient(center, ellipse cover, rgba(241,63,39,1) 0%, rgba(242,127,110,1) 12%, rgba(248,91,63,1) 62%, rgba(233,68,53,1) 97%, rgba(233,68,53,1) 100%);
 background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(241,63,39,1)), color-stop(12%, rgba(242,127,110,1)), color-stop(62%, rgba(248,91,63,1)), color-stop(97%, rgba(233,68,53,1)), color-stop(100%, rgba(233,68,53,1)));
@@ -7727,7 +7726,7 @@ background: -webkit-radial-gradient(center, ellipse cover, rgba(241,63,39,1) 0%,
 background: -o-radial-gradient(center, ellipse cover, rgba(241,63,39,1) 0%, rgba(242,127,110,1) 12%, rgba(248,91,63,1) 62%, rgba(233,68,53,1) 97%, rgba(233,68,53,1) 100%);
 background: -ms-radial-gradient(center, ellipse cover, rgba(241,63,39,1) 0%, rgba(242,127,110,1) 12%, rgba(248,91,63,1) 62%, rgba(233,68,53,1) 97%, rgba(233,68,53,1) 100%);
 background: radial-gradient(ellipse at center, rgba(241,63,39,1) 0%, rgba(242,127,110,1) 12%, rgba(248,91,63,1) 62%, rgba(233,68,53,1) 97%, rgba(233,68,53,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f13f27', endColorstr='#e94435', GradientType=1 );
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f13f27', endColorstr='#e94435', GradientType=1 );*/
 }
 .login .wrapper {
   width: 400px;
