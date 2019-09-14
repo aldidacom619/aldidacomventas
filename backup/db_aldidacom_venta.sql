@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-09-2019 a las 04:19:25
+-- Tiempo de generación: 14-09-2019 a las 15:27:34
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -328,11 +328,35 @@ INSERT INTO `ad_usuarios` (`id`, `codad_empresa`, `codad_aplicacion`, `nombres`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ve_almacens`
+-- Estructura de tabla para la tabla `ve_acumulador_almacen`
 --
 
-CREATE TABLE IF NOT EXISTS `ve_almacens` (
+CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codad_empresa` int(11) NOT NULL,
+  `idad_usuario` int(11) NOT NULL,
+  `idve_producto` int(11) NOT NULL,
+  `idve_proveedor` int(11) NOT NULL,
+  `idve_porcentaje` int(11) NOT NULL,
+  `entrada` int(11) NOT NULL,
+  `precio_compra` float NOT NULL,
+  `precio_venta` float NOT NULL,
+  `vencimiento` int(11) NOT NULL,
+  `fecha_vencimiento` date NOT NULL,
+  `fecha` date NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ve_almacenes`
+--
+
+CREATE TABLE IF NOT EXISTS `ve_almacenes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idad_usuario` int(11) NOT NULL,
   `idve_producto` int(11) NOT NULL,
   `idve_proveedor` int(11) NOT NULL,
   `idve_porcentaje` int(11) NOT NULL,
@@ -531,6 +555,9 @@ CREATE TABLE IF NOT EXISTS `ve_productos` (
   `presentacion` varchar(200) NOT NULL,
   `unidad` varchar(100) NOT NULL,
   `sabor` varchar(50) NOT NULL,
+  `vencimiento` int(11) NOT NULL,
+  `valoracion` int(11) NOT NULL,
+  `precioporcentaje` int(11) NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
@@ -539,22 +566,22 @@ CREATE TABLE IF NOT EXISTS `ve_productos` (
 -- Volcado de datos para la tabla `ve_productos`
 --
 
-INSERT INTO `ve_productos` (`id`, `codad_empresa`, `idve_proveedor`, `valor1`, `valor2`, `composicion`, `presentacion`, `unidad`, `sabor`, `estado`) VALUES
-(1, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'NARANJA', 'AC'),
-(2, 2, 0, 'PDM / PROTEIN DRINK MIX', 'PROTEINA', '616 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 'AC'),
-(3, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 'AC'),
-(4, 2, 0, 'PERFORMANCE PROTEIN POWDER', 'PROTEINA NATURAL', '', 'BOTE MEDIANO', 'BOTE', 'NORMAL', 'AC'),
-(5, 2, 0, 'BARRAS DE PROTEINA DELUZA', 'BARRAS DE PROTEINA', '14 UNIDADES', 'BARRAS PEQUEÑAS', 'BARRA', 'VAINILLA CON ALMENDRAS', 'AC'),
-(6, 2, 0, 'FORMULA 2 VITAMINA-MINERAL HERBAL', 'VITAMINAS', '', 'TABLETAS', 'FRASCO', 'S/S', 'AC'),
-(7, 2, 0, 'NRG', 'NATURE''S RAW GUARANA TEA ', '50GR', 'FRASCO', 'FRASCO', 'S/S', 'AC'),
-(8, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '100 GR', 'FRASCO', 'FRASCO', 'LIMON', 'AC'),
-(9, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '51 GR', 'FRASCO', 'FRASCO', 'CHAI', 'AC'),
-(10, 2, 0, 'XTRA-CAL', 'TABLETAS DE CALCIO', '', 'TABLETAS', 'FRASCO', 'S/S', 'AC'),
-(11, 2, 0, 'HERBAL ALOE DRINK ', 'JUGO CONCENTRADO DE SABILA', 'SABILA', 'BOTE DELGADO', 'BOTE', 'NATURAL', 'AC'),
-(12, 2, 0, 'HERBALIFELINE', 'CAPSULAS DE ACEITE DE PESCADO', '', 'CAPSULAS', 'FRASCO', 'S/S', 'AC'),
-(13, 2, 0, 'FIBRA ACTIVA', 'FIBRA', '', 'BOTE MEDIANO', 'BOTE', 'MANZANA', 'AC'),
-(14, 2, 0, 'H24 REBUILD STRENGTH', 'NUTRICION PARA RECUPERACION', '1000 GR', 'BOTE GRANDE', 'BOTE', 'S/S', 'AC'),
-(15, 2, 0, 'H24 CR7', 'BEBIDA HIDRATANTE DEPORTISTAS ', '24 GR', 'BOTE MEDIANO', 'BOTE', 'S/S', 'AC');
+INSERT INTO `ve_productos` (`id`, `codad_empresa`, `idve_proveedor`, `valor1`, `valor2`, `composicion`, `presentacion`, `unidad`, `sabor`, `vencimiento`, `valoracion`, `precioporcentaje`, `estado`) VALUES
+(1, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'NARANJA', 0, 0, 0, 'AC'),
+(2, 2, 0, 'PDM / PROTEIN DRINK MIX', 'PROTEINA', '616 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 0, 0, 0, 'AC'),
+(3, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 0, 0, 0, 'AC'),
+(4, 2, 0, 'PERFORMANCE PROTEIN POWDER', 'PROTEINA NATURAL', '', 'BOTE MEDIANO', 'BOTE', 'NORMAL', 0, 0, 0, 'AC'),
+(5, 2, 0, 'BARRAS DE PROTEINA DELUZA', 'BARRAS DE PROTEINA', '14 UNIDADES', 'BARRAS PEQUEÑAS', 'BARRA', 'VAINILLA CON ALMENDRAS', 0, 0, 0, 'AC'),
+(6, 2, 0, 'FORMULA 2 VITAMINA-MINERAL HERBAL', 'VITAMINAS', '', 'TABLETAS', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
+(7, 2, 0, 'NRG', 'NATURE''S RAW GUARANA TEA ', '50GR', 'FRASCO', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
+(8, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '100 GR', 'FRASCO', 'FRASCO', 'LIMON', 0, 0, 0, 'AC'),
+(9, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '51 GR', 'FRASCO', 'FRASCO', 'CHAI', 0, 0, 0, 'AC'),
+(10, 2, 0, 'XTRA-CAL', 'TABLETAS DE CALCIO', '', 'TABLETAS', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
+(11, 2, 0, 'HERBAL ALOE DRINK ', 'JUGO CONCENTRADO DE SABILA', 'SABILA', 'BOTE DELGADO', 'BOTE', 'NATURAL', 0, 0, 0, 'AC'),
+(12, 2, 0, 'HERBALIFELINE', 'CAPSULAS DE ACEITE DE PESCADO', '', 'CAPSULAS', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
+(13, 2, 0, 'FIBRA ACTIVA', 'FIBRA', '', 'BOTE MEDIANO', 'BOTE', 'MANZANA', 0, 0, 0, 'AC'),
+(14, 2, 0, 'H24 REBUILD STRENGTH', 'NUTRICION PARA RECUPERACION', '1000 GR', 'BOTE GRANDE', 'BOTE', 'S/S', 0, 0, 0, 'AC'),
+(15, 2, 0, 'H24 CR7', 'BEBIDA HIDRATANTE DEPORTISTAS ', '24 GR', 'BOTE MEDIANO', 'BOTE', 'S/S', 0, 0, 0, 'AC');
 
 -- --------------------------------------------------------
 
@@ -666,6 +693,7 @@ CREATE TABLE IF NOT EXISTS `ve_ventas` (
   `total` float NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `tipoventa` int(11) NOT NULL DEFAULT '1',
+  `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

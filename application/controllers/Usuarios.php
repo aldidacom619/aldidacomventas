@@ -30,7 +30,8 @@ class Usuarios extends CI_Controller
 			{
 				$data = array(
 					'is_logued_in'  => TRUE,
-					'id' => $login[0]->id,
+					'id' => $login[0]->id,					
+					'codad_empresa' => $login[0]->codad_empresa,
 					'codad_aplicacion' => $login[0]->codad_aplicacion,
 					'nombres' => $login[0]->nombres,
 					'apellidos' => $login[0]->apellidos,
@@ -46,9 +47,9 @@ class Usuarios extends CI_Controller
 					'clave' => $login[0]->clave,
 					'tipo_user' => $login[0]->tipo_user,
 					'estado' => $login[0]->estado,
-					'usuario' => $login[0]->nombres." ".$login[0]->apellidos
+					'usuario' => $login[0]->nombres." ".$login[0]->apellidos					
 									
-				); 
+				);  
 				$this->session->set_userdata($data);				
 				redirect("inicio");
 			}

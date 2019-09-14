@@ -7,14 +7,11 @@ function baseurl(enlace)
 }
 function formactualizar(idproducto)
 {
-	$('#actualizarcantidad').modal('show'); 
-/*	var linea = $('#linea').val();
-	var enlace = base_url + "index.php/almacen/formulario2";
-        
+	var enlace = base_url + "almacen/datosproducto";
         $.ajax({
             type: "GET",
             url: enlace,
-             data: {id:idproducto},
+            data: {id:idproducto},
             success: function(data) 
             {
             	if(data == 1)
@@ -25,17 +22,16 @@ function formactualizar(idproducto)
             	{
             		var result = JSON.parse(data);
                     $.each(result, function(i, datos){
-                    $('#id_prod').val(datos.id_pro);
-                    $('#id_linea').val(linea);
-                    $('#generico').val(datos.generico);
-                    $('#comercial').val(datos.comercial);
-                    $('#concentracion').val(datos.descripcion);
-                    $('#presentacion').val(datos.unidad);
-                    $('#linea2').val(datos.linea);
+                    $('#id_prod').val(datos.idve_producto);
+                    $('#generico').val(datos.valor1);
+                    $('#comercial').val(datos.valor2);
+                    $('#concentracion').val(datos.composicion);
+                    $('#presentacion').val(datos.presentacion);
+                    $('#linea2').val(datos.sabor);
                     $('#almacen').val(datos.saldo);
                     });
                     $('#actualizarcantidad').modal('show'); 
             	}            			
             }
-        });*/
+        });
 }

@@ -194,7 +194,7 @@ CREATE TABLE `ve_productos` (
   PRIMARY KEY (`id`)
 )
 
-CREATE TABLE `ve_almacens` (
+CREATE TABLE `ve_almacenes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idve_producto` int(11) NOT NULL,
   `idve_proveedor` int(11) NOT NULL,
@@ -210,8 +210,9 @@ CREATE TABLE `ve_almacens` (
   `factura` int(11) NOT NULL DEFAULT '1',
   `num_factura` int(11) NOT NULL,
   `observaciones` varchar(200) NOT NULL,
-  `estado` varchar(20) NOT NULL,
   `tipoingreso` int(11) NOT NULL DEFAULT '1',
+  `estado` varchar(20) NOT NULL,
+  
   PRIMARY KEY (`id`)
 ) 
 
@@ -308,7 +309,26 @@ CREATE TABLE `ve_devoluciones` (
 
 
 
+CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codad_empresa` int(11) NOT NULL,
+  `idad_usuario` int(11) NOT NULL,
+  `idve_producto` int(11) NOT NULL,
+  `idve_proveedor` int(11) NOT NULL,
+  `idve_porcentaje` int(11) NOT NULL,
+  `entrada` int(11) NOT NULL,
+  `precio_compra` float NOT NULL,
+  `precio_venta` float NOT NULL,
+  `vencimiento` int(11) NOT NULL,
+  `fecha_vencimiento` date NOT NULL,
+  `fecha` date NOT NULL,
+  `estado` varchar(20) NOT NULL 
+) 
 
+
+'prec_com' => $compra,
+      'prec_ven' => $venta,
+      'vencimiento' => $venc
 
 
 INSERT INTO `ve_precios_porcentajes` (`idve_producto`, `porcentaje`, `precio_porcentaje`, `fecha`, `estado`) VALUES
