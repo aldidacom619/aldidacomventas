@@ -16,8 +16,7 @@
                 </div>
                 <div id="tablaproductos"> 
                 
-                </div> 
-            
+                </div>
             </div>
         </div>
     </div>
@@ -78,7 +77,106 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
+    <div class="modal fade" id="actualizarcantidad" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Actualizar Cantidad</h4>
+                  </div>
+                 <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Nombre Genérico</label>
+                        <input class="form-control" id="generico" name="generico" readonly = "true">
+                    
+                    
+                        <label>Nombre Comercial</label>
+                        <input class="form-control" id="comercial" name="generico" readonly = "true">
+                    
+                    
+                        <label>Concentracion</label>
+                        <input class="form-control" id="concentracion" name="concentracion" readonly = "true">
+                    
+                </div>
+                <div class="col-lg-6">
+                    <label>Presentación</label>
+                        <input class="form-control" id="presentacion" name="presentacion" readonly = "true">
+                    
+                    
+                        <label>Linea</label>
+                        <input class="form-control" id="linea2" name="linea2" readonly = "true">
+                    
+                    
+                        <label>Cantidad en almacen</label>
+                        <input class="form-control" id="almacen" name="almacen" readonly = "true">
+                </div>
+            </div>
+        <form id="formularioactualizarproducto">
             
+            <input type="hidden" class="form-control" id="id_prod" name="id_prod" required="required">
+            <input type="hidden" class="form-control" id="id_linea" name="id_linea" required="required">
+            <div class="row">
+                        <div class="col-lg-4">
+                             <div class="form-group">
+                                <label>Porcentaje de Venta</label>
+                                <input class="form-control" id="porcentaje" name="porcentaje" required="required">
+                                                        
+                            </div>
+                              <div class="form-group">
+                                    <label>Descuento</label>
+                                    <input class="form-control" id="descuento" name="descuento" required="required">
+                                    
+                              </div>  
+                                
+                                </div>
+                                
+                                 
+                                 <div class="col-lg-4">
+                                    <div class="form-group">
+                                            <label>Cantidad</label>
+                                            <input class="form-control" id="cantidad" name="cantidad" required="required">
+                                            
+                                      </div>
+                                      <div class="form-group">
+                                            <label>Precio en listas</label>
+                                           <input class="form-control" id="preciolistas" name="preciolistas" required="required">
+                                            
+                                      </div> 
+                                    <div class="form-group">
+                                            <label>Precio Compra</label>
+                                            <input class="form-control" id="compra" name="compra" required="required">
+                                            
+                                      </div>  
+                                      
+                                       
+                                    
+                                 </div>
+                                  <div class="col-lg-4">
+                                    <div class="form-group">
+                                            <label>Precio Venta</label>
+                                            <input class="form-control" id="venta" name="venta" required="required">
+                                            
+                                      </div>  
+                                  <div class="form-group">
+                                            <label>Vencimiento</label>
+                                             <input type="text" id="fecha" class="form-control" name="fecha" placeholder="Seleccione una fecha"/> 
+                                            
+                                      </div> 
+                              
+            </div>
+            
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
+        <button id="Guardaractualizacion" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+      </div>
+    </div>
+            </div>
+        </div>
+    </div>           
             
 <!-- /#FIN CUERPO -->
 </div>
