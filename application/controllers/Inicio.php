@@ -6,7 +6,7 @@ class Inicio extends CI_Controller
 	function __construct(){
 		parent::__construct();	
 		$this->_is_logued_in();	
-		$this->load->helper('Menu_helper');
+		$this->load->helper('menu_helper');
 		$this->load->model('roles_model');
 		$this->load->helper(array('form', 'url'));
 		
