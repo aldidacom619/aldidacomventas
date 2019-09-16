@@ -127,8 +127,7 @@ class Almacen extends CI_Controller
 			{
 				$insert = $this->almacen_model->registraractualizacionacumulador($empresa,$id_usu,$id_pro,$tieneporcentaje,$porcentaje,$cantidad,$compra,$venta,$vencimiento,$fechaven,"AC");
 			}	
-			$dato['filas'] =$this->almacen_model->listaproductoselecionado($empresa,$id_usu);
-			$this->load->view("almacen/lista_acumulador",$dato);
+			echo $this->lista_acumulador_datos($empresa,$id_usu);
 	}
 	function listaacumulador()
 	{
