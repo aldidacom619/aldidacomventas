@@ -10,7 +10,7 @@ class Almacen extends CI_Controller
 		
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		$this->load->helper('Menu_helper');
+		
 		$this->load->helper('date');
 	}
 	function _is_logued_in()
