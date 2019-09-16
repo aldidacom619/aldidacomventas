@@ -82,7 +82,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="exampleModalLabel">Actualizar Cantidad</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Actualizar Cantidad Datos del Producto</h4>
                   </div>
                  <div class="modal-body">
             <div class="row">
@@ -112,17 +112,22 @@
                         <input class="form-control" id="almacen" name="almacen" readonly = "true">
                 </div>
             </div>
+
         <form id="formularioactualizarproducto">
             <input type="hidden" class="form-control" id="id_prod" name="id_prod" required="required">
-            <input type="hidden" class="form-control" id="id_linea" name="id_linea" required="required">
+            <input type="hidden" class="form-control" id="tieneporcentaje" name="tieneporcentaje" required="required">
+            <input type="hidden" class="form-control" id="vencimiento" name="vencimiento" required="required">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="form-group">
+                <br>
+                <legend>Datos de Ingreso Almacen</legend>
+                <div class="col-lg-6">
+                    <div class="form-group" id = "idprocentajeselect">
                         <label>Porcentaje Compra</label>
-                        <input class="form-control" id="preciolistas" name="preciolistas" required="required">                            
+                        <SELECT NAME="porcentaje" id = "porcentaje" class="form-control">
+                        </SELECT>                             
                     </div> 
                     <div class="form-group">
-                        <label>Precio Compra</label>
+                        <label>Precio Compra Unitario</label>
                         <input class="form-control" id="compra" name="compra" required="required">
                     </div>
                     <div class="form-group">
@@ -130,21 +135,21 @@
                         <input class="form-control" id="cantidad" name="cantidad" required="required">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">                    
                     <div class="form-group">
                         <label>Precio Venta</label>
                         <input class="form-control" id="venta" name="venta" required="required">
-                    </div>
-                    <div class="form-group">
+                    </div>    
+                    <div class="form-group" id = "idvencimientoselect">
                         <label>Vencimiento</label>
-                         <input type="text" id="fecha" class="form-control" name="fecha" placeholder="Seleccione una fecha"/>
-                    </div>        
-                </div>
+                         <input type="text" id="fechaven" class="form-control" name="fechaven" placeholder="Seleccione una fecha"/>
+                    </div>                        
+                </div>                
             </div>
         </form>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
-            <button id="Guardaractualizacion" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+            <button id="btnGuardaractualizacion" type="button" class="btn btn-primary" onclick='Guardaractualizacion()'><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
         </div>
     </div>
             </div>
@@ -157,7 +162,8 @@
 <script type="text/javascript">
     $(document).ready(function(){
       var enlace = "<?php echo  base_url() ?>";
-      baseurl(enlace);      
+      baseurl(enlace);  
+      accionesformulario();    
       });
 </script>
    
