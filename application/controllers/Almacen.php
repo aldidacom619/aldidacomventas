@@ -133,10 +133,12 @@ class Almacen extends CI_Controller
 	function listaacumulador()
 	{
 		$empresa = $this->session->userdata('codad_empresa');
-		$id_usu = $this->session->userdata('id');
-		$dato['filas'] =$this->almacen_model->listaproductoselecionado($empresa,$id_usu);
-		$this->load->view("almacen/lista_acumulador",$dato);
+		$id_usu = $this->session->userdata('id');		
+		echo $this->lista_acumulador_datos($empresa,$id_usu);
+
+		//$this->load->view("almacen/lista_acumulador",$dato);
 	}
+	
 	function eliminarproductoacumulador()
 	{
 		$empresa = $this->session->userdata('codad_empresa');
@@ -144,7 +146,8 @@ class Almacen extends CI_Controller
 		$id_vir = $this->input->get('id');
 		$eliminar = $this->almacen_model->eliminproductoacumulador($id_vir);
 		$dato['filas'] =$this->almacen_model->listaproductoselecionado($empresa,$id_usu);
-		$this->load->view("almacen/lista_acumulador",$dato);
+		echo $this->lista_acumulador_datos($empresa,$id_usu);
+		//$this->load->view("almacen/lista_acumulador",$dato);
 	}
 	function cancelaractualizacion()
 	{
@@ -152,7 +155,8 @@ class Almacen extends CI_Controller
 		$id_usu = $this->session->userdata('id');
 		$eliminar = $this->almacen_model->cancelarproductoacumulador($empresa,$id_usu);
 		$dato['filas'] =$this->almacen_model->listaproductoselecionado($empresa,$id_usu);
-		$this->load->view("almacen/lista_acumulador",$dato);
+		//$this->load->view("almacen/lista_acumulador",$dato);
+		echo $this->lista_acumulador_datos($empresa,$id_usu);
 	}
 	function registrar_ingreso()
 	{
@@ -192,5 +196,77 @@ class Almacen extends CI_Controller
 		$eliminar = $this->almacen_model->cancelarproductoacumulador($empresa,$id_usu);		
 		echo "Se actualizaron: ".$con." productos en almacen";
 	}
+	function lista_acumulador_datos($empresa,$id_usu)
+	{
+		$dato =$this->almacen_model->listaproductoselecionado($empresa,$id_usu);
+		$sum = 0;
+		$nl = 1;
+		$retorno = '<div class="row">
+		        <div class="col-lg-12">
+		<div class="panel-body">
+		    <div class="dataTable_wrapper">
+				<table class="table table-striped table-bordered table-hover" >
+					<tr>
+						<th>#</th>
+		                <th>Nombre Generico</th>
+		                <th>Nombre Comercial</th>
+		                <th>Composicion</th>
+		                <th>Presentacion</th>
+		                <th>Unidad</th>
+		                <th>Sabor</th>
+		                <th>Precio Compra</th>
+		                <th>Precio Venta</th>                                            
+		                <th>Cantidad</th>
+		                <th>Total</th>
+		                <th>Fecha Vencimiento</th>
+		                <th>Opciones</th>
+					</tr>';	
+					
+					foreach($dato as $fila)
+					{	
+						$retorno.= '<tr>
+							<td >'. $nl++.'</td>    
+							<td >'. $fila->valor1.'</td>
+		                    <td >'. $fila->valor2.'</td>
+		                    <td >'. $fila->composicion.'</td>
+		                    <td >'. $fila->presentacion.'</td>
+		                    <td >'. $fila->unidad.'</td>
+		                    <td >'. $fila->sabor.'</td>
+		                    <td style="text-align: right;">'. number_format($fila->precio_compra,2).'</td>
+		                    <td style="text-align: right;">'. number_format($fila->precio_venta,2).'</td>
+		                    <td style="text-align: right;">'. $fila->entrada.'</td>
+							<td >'. number_format(($fila->entrada * $fila->precio_compra),2).'</td>
+							<td >'. $fila->fecha_vencimiento.'</td>';	
+
+							$sum = $sum + ($fila->entrada * $fila->precio_compra);
+							
+						$retorno.= "<td ><button id='eliminar' name='eliminar' onclick='eliminar(". $fila->id_vir.")' class='fa fa-pencil'>Eliminar
+						</button>
+							</td>
+						</tr>";
+					}
+					$retorno.=	'<tr>
+						<th style="text-align: right;" colspan="10">COSTO TOTAL</th>
+						<th style="text-align: right;" > <center>'.number_format($sum,2).'</center></th>
+						<td colspan="2"></td>
+					</tr>';
+						if($sum > 0)
+						{
+							$retorno.='<tr>
+							<td style="text-align: center;"colspan="7"><button class="btn-primary" onclick="realizaractualizacion()">Guardar actualizacion</button></td>
+						    <td style="text-align: center;"colspan="6"><button class="btn-primary" onclick="cancelaractualizacion()">Cancelar Venta</button></td>
+							</tr>';
+						}
+					$retorno.='</table>
+			</div>
+		</div>
+		</div>
+		</div>';
+		echo $retorno;
+	}
 }
+
+
+
+	
 ?>
