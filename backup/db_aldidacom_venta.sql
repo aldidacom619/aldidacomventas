@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-09-2019 a las 15:27:34
+-- Tiempo de generación: 16-09-2019 a las 01:42:22
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -336,17 +336,16 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `codad_empresa` int(11) NOT NULL,
   `idad_usuario` int(11) NOT NULL,
   `idve_producto` int(11) NOT NULL,
-  `idve_proveedor` int(11) NOT NULL,
+  `porcentaje` int(11) NOT NULL,
   `idve_porcentaje` int(11) NOT NULL,
   `entrada` int(11) NOT NULL,
   `precio_compra` float NOT NULL,
   `precio_venta` float NOT NULL,
   `vencimiento` int(11) NOT NULL,
   `fecha_vencimiento` date NOT NULL,
-  `fecha` date NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -374,7 +373,16 @@ CREATE TABLE IF NOT EXISTS `ve_almacenes` (
   `estado` varchar(20) NOT NULL,
   `tipoingreso` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `ve_almacenes`
+--
+
+INSERT INTO `ve_almacenes` (`id`, `idad_usuario`, `idve_producto`, `idve_proveedor`, `idve_porcentaje`, `entrada`, `salida`, `saldo`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `fecha`, `factura`, `num_factura`, `observaciones`, `estado`, `tipoingreso`) VALUES
+(6, 11, 7, 0, 35, 5, 0, 5, 200, 200, 1, '2019-11-23', '2019-09-16', 0, 0, '', 'AC', 0),
+(7, 11, 1, 0, 4, 2, 0, 2, 162, 300, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0),
+(8, 11, 2, 0, 9, 5, 0, 5, 214.2, 400, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0);
 
 -- --------------------------------------------------------
 
@@ -567,21 +575,21 @@ CREATE TABLE IF NOT EXISTS `ve_productos` (
 --
 
 INSERT INTO `ve_productos` (`id`, `codad_empresa`, `idve_proveedor`, `valor1`, `valor2`, `composicion`, `presentacion`, `unidad`, `sabor`, `vencimiento`, `valoracion`, `precioporcentaje`, `estado`) VALUES
-(1, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'NARANJA', 0, 0, 0, 'AC'),
-(2, 2, 0, 'PDM / PROTEIN DRINK MIX', 'PROTEINA', '616 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 0, 0, 0, 'AC'),
-(3, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 0, 0, 0, 'AC'),
-(4, 2, 0, 'PERFORMANCE PROTEIN POWDER', 'PROTEINA NATURAL', '', 'BOTE MEDIANO', 'BOTE', 'NORMAL', 0, 0, 0, 'AC'),
-(5, 2, 0, 'BARRAS DE PROTEINA DELUZA', 'BARRAS DE PROTEINA', '14 UNIDADES', 'BARRAS PEQUEÑAS', 'BARRA', 'VAINILLA CON ALMENDRAS', 0, 0, 0, 'AC'),
-(6, 2, 0, 'FORMULA 2 VITAMINA-MINERAL HERBAL', 'VITAMINAS', '', 'TABLETAS', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
-(7, 2, 0, 'NRG', 'NATURE''S RAW GUARANA TEA ', '50GR', 'FRASCO', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
-(8, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '100 GR', 'FRASCO', 'FRASCO', 'LIMON', 0, 0, 0, 'AC'),
-(9, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '51 GR', 'FRASCO', 'FRASCO', 'CHAI', 0, 0, 0, 'AC'),
-(10, 2, 0, 'XTRA-CAL', 'TABLETAS DE CALCIO', '', 'TABLETAS', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
-(11, 2, 0, 'HERBAL ALOE DRINK ', 'JUGO CONCENTRADO DE SABILA', 'SABILA', 'BOTE DELGADO', 'BOTE', 'NATURAL', 0, 0, 0, 'AC'),
-(12, 2, 0, 'HERBALIFELINE', 'CAPSULAS DE ACEITE DE PESCADO', '', 'CAPSULAS', 'FRASCO', 'S/S', 0, 0, 0, 'AC'),
-(13, 2, 0, 'FIBRA ACTIVA', 'FIBRA', '', 'BOTE MEDIANO', 'BOTE', 'MANZANA', 0, 0, 0, 'AC'),
-(14, 2, 0, 'H24 REBUILD STRENGTH', 'NUTRICION PARA RECUPERACION', '1000 GR', 'BOTE GRANDE', 'BOTE', 'S/S', 0, 0, 0, 'AC'),
-(15, 2, 0, 'H24 CR7', 'BEBIDA HIDRATANTE DEPORTISTAS ', '24 GR', 'BOTE MEDIANO', 'BOTE', 'S/S', 0, 0, 0, 'AC');
+(1, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'NARANJA', 1, 1, 1, 'AC'),
+(2, 2, 0, 'PDM / PROTEIN DRINK MIX', 'PROTEINA', '616 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 1, 1, 1, 'AC'),
+(3, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 1, 1, 1, 'AC'),
+(4, 2, 0, 'PERFORMANCE PROTEIN POWDER', 'PROTEINA NATURAL', '', 'BOTE MEDIANO', 'BOTE', 'NORMAL', 1, 1, 1, 'AC'),
+(5, 2, 0, 'BARRAS DE PROTEINA DELUZA', 'BARRAS DE PROTEINA', '14 UNIDADES', 'BARRAS PEQUEÑAS', 'BARRA', 'VAINILLA CON ALMENDRAS', 1, 1, 1, 'AC'),
+(6, 2, 0, 'FORMULA 2 VITAMINA-MINERAL HERBAL', 'VITAMINAS', '', 'TABLETAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(7, 2, 0, 'NRG', 'NATURE''S RAW GUARANA TEA ', '50GR', 'FRASCO', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(8, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '100 GR', 'FRASCO', 'FRASCO', 'LIMON', 1, 1, 1, 'AC'),
+(9, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '51 GR', 'FRASCO', 'FRASCO', 'CHAI', 1, 1, 1, 'AC'),
+(10, 2, 0, 'XTRA-CAL', 'TABLETAS DE CALCIO', '', 'TABLETAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(11, 2, 0, 'HERBAL ALOE DRINK ', 'JUGO CONCENTRADO DE SABILA', 'SABILA', 'BOTE DELGADO', 'BOTE', 'NATURAL', 1, 1, 1, 'AC'),
+(12, 2, 0, 'HERBALIFELINE', 'CAPSULAS DE ACEITE DE PESCADO', '', 'CAPSULAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(13, 2, 0, 'FIBRA ACTIVA', 'FIBRA', '', 'BOTE MEDIANO', 'BOTE', 'MANZANA', 1, 1, 1, 'AC'),
+(14, 2, 0, 'H24 REBUILD STRENGTH', 'NUTRICION PARA RECUPERACION', '1000 GR', 'BOTE GRANDE', 'BOTE', 'S/S', 1, 1, 1, 'AC'),
+(15, 2, 0, 'H24 CR7', 'BEBIDA HIDRATANTE DEPORTISTAS ', '24 GR', 'BOTE MEDIANO', 'BOTE', 'S/S', 1, 1, 1, 'AC');
 
 -- --------------------------------------------------------
 
@@ -621,13 +629,13 @@ CREATE TABLE IF NOT EXISTS `ve_totales` (
 --
 
 INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `estado`) VALUES
-(1, 1, 0, 0, 0, 'ac'),
-(2, 2, 0, 0, 0, 'AC'),
+(1, 1, 2, 162, 300, 'ac'),
+(2, 2, 5, 214.2, 400, 'AC'),
 (3, 3, 0, 0, 0, 'AC'),
 (4, 4, 0, 0, 0, 'AC'),
 (5, 5, 0, 0, 0, 'AC'),
 (6, 6, 0, 0, 0, 'ac'),
-(7, 7, 0, 0, 0, 'AC'),
+(7, 7, 5, 200, 200, 'AC'),
 (8, 8, 0, 0, 0, 'AC'),
 (9, 9, 0, 0, 0, 'AC'),
 (10, 10, 0, 0, 0, 'AC'),
