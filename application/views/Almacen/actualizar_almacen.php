@@ -14,8 +14,56 @@
                 <div class="panel-heading">
                     Lista Productos Para Actualizar Almacen
                 </div>
-                <div id="tablaproductos"> 
-                
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example_dos">
+                            <thead>
+                                <tr>                                    
+                                    <th>#</th>
+                                    <th>Opc.</th>
+                                    <th>Nombre Generico</th>
+                                    <th>Nombre Comercial</th>
+                                    <th>Composicion</th>
+                                    <th>Presentacion</th>
+                                    <th>Unidad</th>
+                                    <th>Sabor</th>
+                                    <th>Precio Compra</th>
+                                    <th>Precio Venta</th>                                            
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                    <th>Fecha Vencimiento</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <? $nl = 1;$sum = 0;?>
+                                <? foreach($prodvirtuales as $fila):?>
+                                <tr>
+                                    <td ><?= $nl++?></td> 
+                                    <td class = "diego">                                         
+                                            <button id="eliminar" name="eliminar" onclick='eliminar(<?= $fila->id_vir?>)' class="fa fa-pencil">
+                                            </button>
+                                    </td>     
+                                    <td ><?= $fila->valor1?></td>
+                                    <td ><?= $fila->valor2?></td>
+                                    <td ><?= $fila->composicion?></td>
+                                    <td ><?= $fila->presentacion?></td>
+                                    <td ><?= $fila->unidad?></td>
+                                    <td ><?= $fila->sabor?></td>
+                                    <td style="text-align: right;"><?= number_format($fila->precio_compra,2)?></td>
+                                    <td style="text-align: right;"><?= number_format($fila->precio_venta,2)?></td>
+                                    <td style="text-align: right;"><?= $fila->entrada?></td>
+                                    <td class = "diego"> <center><?= number_format(($fila->entrada * $fila->precio_compra),2)?></center></td>
+                                    <td class = "diego"> <center><?= $fila->fecha_vencimiento?></center></td>
+                                    <?php 
+                                    $sum = $sum + ($fila->entrada * $fila->precio_compra);
+                                    ?>
+                                                                          
+                                </tr>                                    
+                                <?endforeach?>                                      
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,6 +82,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Opc.</th>
                                     <th>Nombre Generico</th>
                                     <th>Nombre Comercial</th>
                                     <th>Composicion</th>
@@ -42,15 +91,17 @@
                                     <th>Sabor</th>
                                     <th>Precio Compra</th>
                                     <th>Precio Venta</th>                                            
-                                    <th>Cantidad en Almacen</th>
-                                    <th>Opciones</th>
+                                    <th>Cantidad en Almacen</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <? $n = 1?>
                                 <? foreach($totales as $fila):?>
                                 <tr>
-                                    <td ><?= $n++?></td>                                      
+                                    <td ><?= $n++?></td> 
+                                    <td>
+                                        <button onclick='formactualizar(<?= $fila->idve_producto?>)' class="fa fa-pencil"></button><br>
+                                    </td>                                       
                                     <td ><?= $fila->valor1?></td>
                                     <td ><?= $fila->valor2?></td>
                                     <td ><?= $fila->composicion?></td>
@@ -60,18 +111,13 @@
                                     <td style="text-align: right;"><?= $fila->compra?></td>
                                     <td style="text-align: right;"><?= $fila->venta?></td>
                                     <td style="text-align: right;"><?= $fila->saldo?></td>
-                                    <td>
-                                        <button class="btn btn-primary" onclick='formactualizar(<?= $fila->idve_producto?>)'>Agregar</button><br>
-                                    </td>                                        
+                                                                          
                                 </tr>                                    
                                 <?endforeach?>                                      
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.table-responsive -->
-                    
                 </div>
-                <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
         </div>

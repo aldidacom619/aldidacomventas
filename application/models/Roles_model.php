@@ -43,6 +43,13 @@ class Roles_model extends CI_Model
 									  and u.estado = 'AC'");	
         return $query->result();
 	}
+	function empresa_valoracion($empresa)
+	{
+		$query = $this->db->query("select valoracionproducto
+			                         from ad_empresas
+  								    where codigo = ".$empresa);	
+        return $query->result();
+	}
 
 }
 ?>

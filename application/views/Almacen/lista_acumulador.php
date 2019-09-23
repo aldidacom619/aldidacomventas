@@ -1,5 +1,5 @@
 <?php $sum = 0;?>
- <div class="row">
+ <div class="row"> 
         <div class="col-lg-12">
 <div class="panel-body">
     <div class="dataTable_wrapper">
@@ -37,10 +37,10 @@
 					<?php 
 					$sum = $sum + ($fila->entrada * $fila->precio_compra);
 					?>
-				<td class = "diego"> 
-					
-						<button id="eliminar" name="eliminar" onclick='eliminar(<?= $fila->id_vir?>)' class="fa fa-pencil">Eliminar
-				</button>
+					<td class = "diego"> 
+						
+							<button id="eliminar" name="eliminar" onclick='eliminar(<?= $fila->id_vir?>)' class="fa fa-pencil">Eliminar
+							</button>
 					</td>
 				</tr>
 			<?endforeach?> 

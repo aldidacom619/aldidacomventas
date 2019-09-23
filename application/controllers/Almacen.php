@@ -5,12 +5,11 @@ class Almacen extends CI_Controller
 	function __construct(){
 		parent::__construct();	
 		$this->_is_logued_in();	
+		$this->load->helper('menu_helper');
 		$this->load->model('roles_model');
-		$this->load->model('almacen_model');
-		
+		$this->load->model('almacen_model');		
 		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-		
+		$this->load->library('form_validation');		
 		$this->load->helper('date');
 	}
 	function _is_logued_in()
@@ -32,6 +31,7 @@ class Almacen extends CI_Controller
 			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
 			$dato['totales'] = $this->almacen_model->almacen_totales($empresa);
+			$dato['prodvirtuales'] =$this->almacen_model->listaproductoselecionado($empresa,$id_usu);
 			$this->load->view("Inicio/cabecera");				
 			$this->load->view("Inicio/menu",$dato);		
 			$this->load->view("Almacen/actualizar_almacen",$dato);		
@@ -194,6 +194,10 @@ class Almacen extends CI_Controller
 		}
 		$eliminar = $this->almacen_model->cancelarproductoacumulador($empresa,$id_usu);		
 		echo "Se actualizaron: ".$con." productos en almacen";
+	}
+	function vervalorizacion()
+	{
+		echo empresa_valoracion(2);
 	}
 	function lista_acumulador_datos($empresa,$id_usu)
 	{

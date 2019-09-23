@@ -309,7 +309,7 @@ CREATE TABLE `ve_devoluciones` (
 
 
 
-CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
+CREATE TABLE `ve_acumulador_almacen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codad_empresa` int(11) NOT NULL,
   `idad_usuario` int(11) NOT NULL,
@@ -322,7 +322,8 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `vencimiento` int(11) NOT NULL,
   `fecha_vencimiento` date NOT NULL,
   `fecha` date NOT NULL,
-  `estado` varchar(20) NOT NULL 
+  `estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
 ) 
 
 
