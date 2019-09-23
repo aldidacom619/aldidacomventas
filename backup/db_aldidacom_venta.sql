@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-09-2019 a las 01:42:22
+-- Tiempo de generación: 23-09-2019 a las 17:43:59
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `ad_empresas` (
   `direccion` varchar(100) NOT NULL,
   `descripcion_entidad` varchar(200) NOT NULL,
   `fecha` date NOT NULL,
+  `valoracionproducto` int(11) NOT NULL,
   `estado` varchar(250) NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -111,9 +112,9 @@ CREATE TABLE IF NOT EXISTS `ad_empresas` (
 -- Volcado de datos para la tabla `ad_empresas`
 --
 
-INSERT INTO `ad_empresas` (`codigo`, `denominacion`, `correo`, `abreviatura`, `propietario`, `telefono`, `direccion`, `descripcion_entidad`, `fecha`, `estado`) VALUES
-(1, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 'AC'),
-(2, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com	', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 'AC');
+INSERT INTO `ad_empresas` (`codigo`, `denominacion`, `correo`, `abreviatura`, `propietario`, `telefono`, `direccion`, `descripcion_entidad`, `fecha`, `valoracionproducto`, `estado`) VALUES
+(1, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 0, 'AC'),
+(2, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com	', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 1, 'AC');
 
 -- --------------------------------------------------------
 
@@ -345,7 +346,14 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `fecha_vencimiento` date NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `ve_acumulador_almacen`
+--
+
+INSERT INTO `ve_acumulador_almacen` (`id`, `codad_empresa`, `idad_usuario`, `idve_producto`, `porcentaje`, `idve_porcentaje`, `entrada`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `estado`) VALUES
+(10, 2, 11, 5, 1, 24, 1, 151.3, 280, 1, '2020-02-01', 'AC');
 
 -- --------------------------------------------------------
 
