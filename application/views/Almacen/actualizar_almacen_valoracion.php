@@ -3,9 +3,9 @@
 <!-- /#INICIA CUERPO -->
 
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Actualizar Almacen</h1>
-        </div>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Actualizar Almacen</h1>
+                </div>
                 <!-- /.col-lg-12 -->
     </div>
     <div class="row">
@@ -15,8 +15,8 @@
                     Lista Productos Para Actualizar Almacen
                 </div>
                 <div class="panel-body">
-                   <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="tablaproductos">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="tablaproductos" border="1">
                            
                         </table>
                     </div>
@@ -39,15 +39,16 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Opc.</th>
-                                    <th>Nombre Generico</th>
-                                    <th>Nombre Comercial</th>
+                                    <th>Producto</th>
+                                    <th>Valoración</th>
+                                    <th>Cantidad en Almacen</th> 
                                     <th>Composicion</th>
                                     <th>Presentacion</th>
                                     <th>Unidad</th>
                                     <th>Sabor</th>
                                     <th>Precio Compra</th>
                                     <th>Precio Venta</th>                                            
-                                    <th>Cantidad en Almacen</th>                                    
+                                                                       
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,17 +57,17 @@
                                 <tr>
                                     <td ><?= $n++?></td> 
                                     <td>
-                                        <button onclick='formactualizar(<?= $fila->idve_producto?>)' class="fa fa-pencil"></button><br>
+                                        <button onclick='formactualizar(<?= $fila->idve_producto?>)' class="glyphicon glyphicon-plus-sign"></button><br>
                                     </td>                                       
-                                    <td ><?= $fila->valor1?></td>
-                                    <td ><?= $fila->valor2?></td>
+                                    <td ><?= $fila->valor1."<br>".$fila->valor2?></td>                                    
+                                    <td ><?= $fila->puntos?></td>
+                                    <td style="text-align: right;"><?= $fila->saldo?></td>
                                     <td ><?= $fila->composicion?></td>
                                     <td ><?= $fila->presentacion?></td>
                                     <td ><?= $fila->unidad?></td>
                                     <td ><?= $fila->sabor?></td>
                                     <td style="text-align: right;"><?= $fila->compra?></td>
-                                    <td style="text-align: right;"><?= $fila->venta?></td>
-                                    <td style="text-align: right;"><?= $fila->saldo?></td>
+                                    <td style="text-align: right;"><?= $fila->venta?></td>                                   
                                                                           
                                 </tr>                                    
                                 <?endforeach?>                                      

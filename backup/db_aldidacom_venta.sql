@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-09-2019 a las 17:43:59
+-- Tiempo de generación: 24-09-2019 a las 01:01:51
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -346,14 +346,17 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `fecha_vencimiento` date NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Volcado de datos para la tabla `ve_acumulador_almacen`
 --
 
 INSERT INTO `ve_acumulador_almacen` (`id`, `codad_empresa`, `idad_usuario`, `idve_producto`, `porcentaje`, `idve_porcentaje`, `entrada`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `estado`) VALUES
-(10, 2, 11, 5, 1, 24, 1, 151.3, 280, 1, '2020-02-01', 'AC');
+(11, 2, 11, 2, 1, 9, 2, 214.2, 400, 1, '2020-01-24', 'AC'),
+(13, 2, 11, 7, 1, 34, 1, 108, 200, 1, '2019-09-01', 'AC'),
+(14, 2, 11, 3, 1, 14, 2, 162, 300, 1, '2020-01-24', 'AC'),
+(15, 2, 11, 5, 1, 24, 3, 151.3, 280, 1, '2020-04-30', 'AC');
 
 -- --------------------------------------------------------
 

@@ -23,8 +23,10 @@ class Almacen_model extends CI_Model
 	{
 		$query = $this->db->query("select *
 									  from ve_productos p, 
-									       ve_totales t
+									       ve_totales t,
+									       ve_valorizaciones v
 									 where p.id = t.idve_producto
+									   and p.id = v.idve_producto
 									   and p.estado = 'AC'
 									   and p.codad_empresa=".$empresa);	
         return $query->result();
@@ -97,6 +99,18 @@ class Almacen_model extends CI_Model
 									  from ve_productos p, 
 									       ve_acumulador_almacen a
 									 where p.id = a.idve_producto
+									   and a.codad_empresa =".$empresa."
+									   and a.idad_usuario = ".$idad_usuario);	
+		return $query->result();
+	}
+	function listaproductoselecionado_valoracion($empresa,$idad_usuario)
+	{
+		$query = $this->db->query("select *,a.id as id_vir
+									  from ve_productos p, 
+									       ve_acumulador_almacen a,
+									       ve_valorizaciones v
+									 where p.id = a.idve_producto
+									   and p.id = v.idve_producto
 									   and a.codad_empresa =".$empresa."
 									   and a.idad_usuario = ".$idad_usuario);	
 		return $query->result();
