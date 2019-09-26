@@ -180,7 +180,6 @@ class Almacen extends CI_Controller
 	}
 	function registrar_ingreso()
 	{
-		$ci = $this->session->userdata('ci_persona'); 
 		$datestring = " %Y-%m-%d";
 		$time = time();
 		$fecha =  mdate($datestring, $time);

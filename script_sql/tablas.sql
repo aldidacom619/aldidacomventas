@@ -157,12 +157,20 @@ CREATE TABLE IF NOT EXISTS `cb_cuentas` (
 
 
 ----------------------VENTAS
+CREATE TABLE IF NOT EXISTS `ve_linea_producto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codad_empresa` int(11) NOT NULL,
+  `nombre_liena` varchar(200) NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 
 CREATE TABLE `ve_proveedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codad_empresa` int(11) NOT NULL,
-  `nombre_pro` varchar(200) NOT NULL,
-  `linea` varchar(100) NOT NULL,
+  `idve_linea` int(11) NOT NULL,
+  `nombre_proveedor` varchar(200) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `estado` varchar(20) NOT NULL,
@@ -326,6 +334,20 @@ CREATE TABLE `ve_acumulador_almacen` (
   PRIMARY KEY (`id`)
 ) 
 
+
+CREATE TABLE IF NOT EXISTS `ve_acumulador_venta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codad_empresa` int(11) NOT NULL,
+  `idad_usuario` int(11) NOT NULL,
+  `idve_producto` int(11) NOT NULL,
+  `porcentaje` int(11) NOT NULL,
+  `idve_porcentaje` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_compra` float NOT NULL,
+  `precio_venta` float NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) 
 
 'prec_com' => $compra,
       'prec_ven' => $venta,

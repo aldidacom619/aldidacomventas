@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-09-2019 a las 01:01:51
+-- Tiempo de generación: 26-09-2019 a las 18:16:25
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -54,18 +54,20 @@ CREATE TABLE IF NOT EXISTS `ad_aplicaciones` (
   `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(250) NOT NULL,
   `abreviatura` varchar(20) NOT NULL,
-  `nombre` varchar(250) NOT NULL,
+  `nombre_aplicacion` varchar(250) NOT NULL,
+  `user_administrador` varchar(4) NOT NULL,
   `estado` varchar(250) NOT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `ad_aplicaciones`
 --
 
-INSERT INTO `ad_aplicaciones` (`codigo`, `descripcion`, `abreviatura`, `nombre`, `estado`) VALUES
-(8, 'APLICACION PRINCIPAL', 'ADMIN', 'ADMINISTRACION', 'AC'),
-(9, 'SISTEMA DE VENTAS', 'SV', 'SISTEMA DE VENTAS', 'AC');
+INSERT INTO `ad_aplicaciones` (`codigo`, `descripcion`, `abreviatura`, `nombre_aplicacion`, `user_administrador`, `estado`) VALUES
+(8, 'APLICACION PRINCIPAL', 'ADMIN', 'ADMINISTRACION', 'SI', 'AC'),
+(9, 'SISTEMA DE VENTAS', 'SV', 'SISTEMA DE VENTAS', 'NO', 'AC'),
+(10, 'SISTEMA DE VENTAS FARMACIA', 'SVF', 'SISTEMA DE VENTAS FARMACIA', 'SI', 'AC');
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `ad_empresas` (
   `valoracionproducto` int(11) NOT NULL,
   `estado` varchar(250) NOT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `ad_empresas`
@@ -114,7 +116,8 @@ CREATE TABLE IF NOT EXISTS `ad_empresas` (
 
 INSERT INTO `ad_empresas` (`codigo`, `denominacion`, `correo`, `abreviatura`, `propietario`, `telefono`, `direccion`, `descripcion_entidad`, `fecha`, `valoracionproducto`, `estado`) VALUES
 (1, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 0, 'AC'),
-(2, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com	', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 1, 'AC');
+(2, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com	', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 1, 'AC'),
+(3, 'VENTA LETICIA FARMACIA', 'lety@gmail.com', 'VLF', 'DORIS DAZA', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS FARMACEUTICOS', '2019-09-26', 0, 'AC');
 
 -- --------------------------------------------------------
 
@@ -225,7 +228,7 @@ INSERT INTO `ad_opciones` (`codigo`, `codad_modulo`, `codad_opcion`, `opcion`, `
 (42, 17, 31, 'BAJA PRODUCTO', '', '', 2, 6, 'AC'),
 (43, 21, 34, 'DETALLE ALMACEN', '', '', 2, 1, 'AC'),
 (44, 21, 34, 'ACTUALIZAR ALMACEN', '', 'Almacen', 2, 2, 'AC'),
-(45, 20, 30, 'REGISTRAR VENTA', '', '', 2, 1, 'AC'),
+(45, 20, 30, 'REGISTRAR VENTA', '', 'Ventas', 2, 1, 'AC'),
 (46, 20, 30, 'REGISTRAR DEVOLUCION', '', '', 2, 2, 'AC'),
 (47, 18, 32, 'LISTA PROVEEDORES', '', '', 2, 1, 'AC'),
 (48, 18, 33, 'STOCK PRODUCTOS', '', '', 2, 1, 'AC'),
@@ -251,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `ad_opciones_usuarios` (
   `idad_logs` int(11) DEFAULT NULL,
   `estado` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=113 ;
 
 --
 -- Volcado de datos para la tabla `ad_opciones_usuarios`
@@ -289,7 +292,32 @@ INSERT INTO `ad_opciones_usuarios` (`id`, `idad_usuario`, `codad_opcion`, `idad_
 (84, 11, 53, 11, 'AC'),
 (85, 11, 54, 11, 'AC'),
 (86, 11, 55, 11, 'AC'),
-(87, 11, 56, 11, 'AC');
+(87, 11, 56, 11, 'AC'),
+(88, 13, 30, 11, 'AC'),
+(89, 13, 31, 11, 'AC'),
+(90, 13, 33, 11, 'AC'),
+(91, 13, 34, 11, 'AC'),
+(92, 13, 35, 11, 'AC'),
+(93, 13, 36, 11, 'AC'),
+(94, 13, 37, 11, 'AC'),
+(95, 13, 38, 11, 'AC'),
+(96, 13, 39, 11, 'AC'),
+(97, 13, 40, 11, 'AC'),
+(98, 13, 41, 11, 'AC'),
+(99, 13, 42, 11, 'AC'),
+(100, 13, 43, 11, 'AC'),
+(101, 13, 44, 11, 'AC'),
+(102, 13, 45, 11, 'AC'),
+(103, 13, 46, 11, 'AC'),
+(104, 13, 48, 11, 'AC'),
+(105, 13, 49, 11, 'AC'),
+(106, 13, 50, 11, 'AC'),
+(107, 13, 51, 11, 'AC'),
+(108, 13, 52, 11, 'AC'),
+(109, 13, 53, 11, 'AC'),
+(110, 13, 54, 11, 'AC'),
+(111, 13, 55, 11, 'AC'),
+(112, 13, 56, 11, 'AC');
 
 -- --------------------------------------------------------
 
@@ -316,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `ad_usuarios` (
   `tipo_user` varchar(250) NOT NULL,
   `estado` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Volcado de datos para la tabla `ad_usuarios`
@@ -324,7 +352,9 @@ CREATE TABLE IF NOT EXISTS `ad_usuarios` (
 
 INSERT INTO `ad_usuarios` (`id`, `codad_empresa`, `codad_aplicacion`, `nombres`, `apellidos`, `nro_documento`, `tipo_documento`, `idad_logs`, `direccion`, `tel_cel`, `fecha_nacimiento`, `correo`, `cargo`, `login`, `clave`, `tipo_user`, `estado`) VALUES
 (8, 1, 8, 'DIEGO', 'DAZA ALCARAZ', '6703132', 'CI', 8, 'HEROINAS', '78720504', '1989-11-26', 'aldidacom@gmail.com', 'GERENTE', 'DDAZA.ADMIN', '952c4c39d5460b647fa9f7f4cf36fb13', 'SUPER ADMINISTRADOR', 'AC'),
-(11, 2, 1, 'LETICIA DORIS', 'DAZA ALCARAZ', '6549871', 'CI', 11, 'DELICIAS', '72433002', '1987-07-04', 'lety@gmail.com', 'GERENTE PROPIETARIA', 'LETYDAZA.HLV', '952c4c39d5460b647fa9f7f4cf36fb13', 'USUARIO CENTRAL', 'AC');
+(11, 2, 9, 'LETICIA DORIS', 'DAZA ALCARAZ', '6549871', 'CI', 11, 'DELICIAS', '72433002', '1987-07-04', 'lety@gmail.com', 'GERENTE PROPIETARIA', 'LETYDAZA.HLV', '952c4c39d5460b647fa9f7f4cf36fb13', 'USUARIO CENTRAL', 'AC'),
+(12, 3, 10, 'DORIS', 'ALCARAZ', '6549871', 'CI', 11, 'DELICIAS', '72433002', '1987-07-04', 'lety@gmail.com', 'GERENTE PROPIETARIA', 'ADMLETYDAZA.HLF', '952c4c39d5460b647fa9f7f4cf36fb13', 'ADMINISTRADOR', 'AC'),
+(13, 3, 10, 'DORIS', 'ALCARAZ', '6549871', 'CI', 11, 'DELICIAS', '72433002', '1987-07-04', 'lety@gmail.com', 'EJECUTIVOS DE VENTAS', 'LETYDAZA2.HLF', '952c4c39d5460b647fa9f7f4cf36fb13', 'USUARIO_NORMAL', 'AC');
 
 -- --------------------------------------------------------
 
@@ -346,17 +376,27 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `fecha_vencimiento` date NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `ve_acumulador_almacen`
+-- Estructura de tabla para la tabla `ve_acumulador_venta`
 --
 
-INSERT INTO `ve_acumulador_almacen` (`id`, `codad_empresa`, `idad_usuario`, `idve_producto`, `porcentaje`, `idve_porcentaje`, `entrada`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `estado`) VALUES
-(11, 2, 11, 2, 1, 9, 2, 214.2, 400, 1, '2020-01-24', 'AC'),
-(13, 2, 11, 7, 1, 34, 1, 108, 200, 1, '2019-09-01', 'AC'),
-(14, 2, 11, 3, 1, 14, 2, 162, 300, 1, '2020-01-24', 'AC'),
-(15, 2, 11, 5, 1, 24, 3, 151.3, 280, 1, '2020-04-30', 'AC');
+CREATE TABLE IF NOT EXISTS `ve_acumulador_venta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codad_empresa` int(11) NOT NULL,
+  `idad_usuario` int(11) NOT NULL,
+  `idve_producto` int(11) NOT NULL,
+  `porcentaje` int(11) NOT NULL,
+  `idve_porcentaje` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_compra` float NOT NULL,
+  `precio_venta` float NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 -- --------------------------------------------------------
 
@@ -384,16 +424,30 @@ CREATE TABLE IF NOT EXISTS `ve_almacenes` (
   `estado` varchar(20) NOT NULL,
   `tipoingreso` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Volcado de datos para la tabla `ve_almacenes`
 --
 
 INSERT INTO `ve_almacenes` (`id`, `idad_usuario`, `idve_producto`, `idve_proveedor`, `idve_porcentaje`, `entrada`, `salida`, `saldo`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `fecha`, `factura`, `num_factura`, `observaciones`, `estado`, `tipoingreso`) VALUES
-(6, 11, 7, 0, 35, 5, 0, 5, 200, 200, 1, '2019-11-23', '2019-09-16', 0, 0, '', 'AC', 0),
-(7, 11, 1, 0, 4, 2, 0, 2, 162, 300, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0),
-(8, 11, 2, 0, 9, 5, 0, 5, 214.2, 400, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0);
+(6, 11, 7, 0, 35, 5, 5, 0, 200, 200, 1, '2019-11-23', '2019-09-16', 0, 0, '', 'AC', 0),
+(7, 11, 1, 0, 4, 2, 2, 0, 162, 300, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0),
+(8, 11, 2, 0, 9, 5, 5, 0, 214.2, 400, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0),
+(9, 11, 2, 0, 9, 2, 2, 0, 214.2, 400, 1, '2020-01-24', '2019-09-24', 0, 0, '', 'AC', 0),
+(10, 11, 7, 0, 34, 1, 1, 0, 108, 200, 1, '2019-09-01', '2019-09-24', 0, 0, '', 'AC', 0),
+(11, 11, 3, 0, 14, 2, 2, 0, 162, 300, 1, '2020-01-24', '2019-09-24', 0, 0, '', 'AC', 0),
+(12, 11, 5, 0, 24, 3, 3, 0, 151.3, 280, 1, '2020-04-30', '2019-09-24', 0, 0, '', 'AC', 0),
+(13, 11, 6, 0, 29, 5, 5, 0, 73.2, 140, 1, '2020-02-01', '2019-09-24', 0, 0, '', 'AC', 0),
+(14, 11, 4, 0, 19, 3, 3, 0, 131.5, 250, 1, '2020-03-28', '2019-09-24', 0, 0, '', 'AC', 0),
+(15, 11, 8, 0, 39, 5, 5, 0, 226, 405, 1, '2020-06-20', '2019-09-24', 0, 0, '', 'AC', 0),
+(16, 11, 9, 0, 44, 6, 6, 0, 129.2, 250, 1, '2020-05-15', '2019-09-24', 0, 0, '', 'AC', 0),
+(17, 11, 10, 0, 49, 6, 6, 0, 75, 145, 1, '2020-05-02', '2019-09-24', 0, 0, '', 'AC', 0),
+(18, 11, 11, 0, 54, 4, 4, 0, 183, 320, 1, '2020-08-29', '2019-09-24', 0, 0, '', 'AC', 0),
+(19, 11, 12, 0, 59, 4, 4, 0, 189, 335, 1, '2020-05-30', '2019-09-24', 0, 0, '', 'AC', 0),
+(20, 11, 13, 0, 64, 2, 2, 0, 214.2, 400, 1, '2020-08-01', '2019-09-24', 0, 0, '', 'AC', 0),
+(21, 11, 14, 0, 69, 1, 1, 0, 379, 630, 1, '2020-06-12', '2019-09-24', 0, 0, '', 'AC', 0),
+(22, 11, 15, 0, 74, 3, 3, 0, 166.3, 250, 1, '2020-07-24', '2019-09-24', 0, 0, '', 'AC', 0);
 
 -- --------------------------------------------------------
 
@@ -460,6 +514,57 @@ CREATE TABLE IF NOT EXISTS `ve_ingreso_prestamos` (
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ve_linea_producto`
+--
+
+CREATE TABLE IF NOT EXISTS `ve_linea_producto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codad_empresa` int(11) NOT NULL,
+  `nombre_liena` varchar(200) NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+
+--
+-- Volcado de datos para la tabla `ve_linea_producto`
+--
+
+INSERT INTO `ve_linea_producto` (`id`, `codad_empresa`, `nombre_liena`, `estado`) VALUES
+(1, 2, 'HERBALIFE', 'AC'),
+(4, 3, 'BAGO', 'AC'),
+(5, 3, 'TERBOL', 'AC'),
+(6, 3, 'BAYER', 'AC'),
+(7, 3, 'COFAR', 'AC'),
+(8, 3, 'SAE', 'AC'),
+(9, 3, 'CRESPAL', 'AC'),
+(10, 3, 'INALTEX', 'AC'),
+(11, 3, 'INTI', 'AC'),
+(12, 3, 'HOSPIMED', 'AC'),
+(13, 3, 'IFARBO', 'AC'),
+(14, 3, 'DISMEBOL', 'AC'),
+(15, 3, 'TECNOFARMA', 'AC'),
+(16, 3, 'DELTA', 'AC'),
+(17, 3, 'LAFAR', 'AC'),
+(18, 3, 'CORMED', 'AC'),
+(19, 3, 'QUIMIZA', 'AC'),
+(20, 3, 'HAHNEMANN', 'AC'),
+(21, 3, 'SAVAL', 'AC'),
+(22, 3, 'SCHMIDTS PHARMA', 'AC'),
+(23, 3, 'ALFA', 'AC'),
+(24, 3, 'VITA', 'AC'),
+(25, 3, 'LAQFAGAL', 'AC'),
+(26, 3, 'ALCOS', 'AC'),
+(27, 3, 'IFA', 'AC'),
+(28, 3, 'FARMEDICAL', 'AC'),
+(29, 3, 'CORMESA', 'AC'),
+(30, 3, 'PROMEDICAL', 'AC'),
+(31, 3, 'VALENCIA', 'AC'),
+(32, 3, 'CARLITOS', 'AC'),
+(33, 3, 'LEMAITRE', 'AC');
 
 -- --------------------------------------------------------
 
@@ -542,11 +647,11 @@ INSERT INTO `ve_precios_porcentajes` (`id`, `idve_producto`, `porcentaje`, `prec
 (58, 12, 42, 210.2, '2019-09-12', 'AC'),
 (59, 12, 50, 189, '2019-09-12', 'AC'),
 (60, 12, 100, 335, '2019-09-12', 'AC'),
-(61, 13, 25, 284, '2019-09-12', 'AC'),
-(62, 13, 35, 256, '2019-09-12', 'AC'),
-(63, 13, 42, 235.5, '2019-09-12', 'AC'),
-(64, 13, 50, 214.2, '2019-09-12', 'AC'),
-(65, 13, 100, 400, '2019-09-12', 'AC'),
+(61, 13, 25, 228, '2019-09-12', 'AC'),
+(62, 13, 35, 204, '2019-09-12', 'AC'),
+(63, 13, 42, 187.1, '2019-09-12', 'AC'),
+(64, 13, 50, 168, '2019-09-12', 'AC'),
+(65, 13, 100, 310, '2019-09-12', 'AC'),
 (66, 14, 25, 505.3, '2019-09-12', 'AC'),
 (67, 14, 35, 455, '2019-09-12', 'AC'),
 (68, 14, 42, 419.4, '2019-09-12', 'AC'),
@@ -567,9 +672,10 @@ INSERT INTO `ve_precios_porcentajes` (`id`, `idve_producto`, `porcentaje`, `prec
 CREATE TABLE IF NOT EXISTS `ve_productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codad_empresa` int(11) NOT NULL,
-  `idve_proveedor` int(11) NOT NULL,
+  `idve_linea` int(11) NOT NULL,
   `valor1` varchar(200) NOT NULL,
   `valor2` varchar(200) NOT NULL,
+  `descripcion_producto` text NOT NULL,
   `composicion` varchar(200) NOT NULL,
   `presentacion` varchar(200) NOT NULL,
   `unidad` varchar(100) NOT NULL,
@@ -585,22 +691,22 @@ CREATE TABLE IF NOT EXISTS `ve_productos` (
 -- Volcado de datos para la tabla `ve_productos`
 --
 
-INSERT INTO `ve_productos` (`id`, `codad_empresa`, `idve_proveedor`, `valor1`, `valor2`, `composicion`, `presentacion`, `unidad`, `sabor`, `vencimiento`, `valoracion`, `precioporcentaje`, `estado`) VALUES
-(1, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'NARANJA', 1, 1, 1, 'AC'),
-(2, 2, 0, 'PDM / PROTEIN DRINK MIX', 'PROTEINA', '616 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 1, 1, 1, 'AC'),
-(3, 2, 0, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '550 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 1, 1, 1, 'AC'),
-(4, 2, 0, 'PERFORMANCE PROTEIN POWDER', 'PROTEINA NATURAL', '', 'BOTE MEDIANO', 'BOTE', 'NORMAL', 1, 1, 1, 'AC'),
-(5, 2, 0, 'BARRAS DE PROTEINA DELUZA', 'BARRAS DE PROTEINA', '14 UNIDADES', 'BARRAS PEQUEÑAS', 'BARRA', 'VAINILLA CON ALMENDRAS', 1, 1, 1, 'AC'),
-(6, 2, 0, 'FORMULA 2 VITAMINA-MINERAL HERBAL', 'VITAMINAS', '', 'TABLETAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
-(7, 2, 0, 'NRG', 'NATURE''S RAW GUARANA TEA ', '50GR', 'FRASCO', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
-(8, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '100 GR', 'FRASCO', 'FRASCO', 'LIMON', 1, 1, 1, 'AC'),
-(9, 2, 0, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '51 GR', 'FRASCO', 'FRASCO', 'CHAI', 1, 1, 1, 'AC'),
-(10, 2, 0, 'XTRA-CAL', 'TABLETAS DE CALCIO', '', 'TABLETAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
-(11, 2, 0, 'HERBAL ALOE DRINK ', 'JUGO CONCENTRADO DE SABILA', 'SABILA', 'BOTE DELGADO', 'BOTE', 'NATURAL', 1, 1, 1, 'AC'),
-(12, 2, 0, 'HERBALIFELINE', 'CAPSULAS DE ACEITE DE PESCADO', '', 'CAPSULAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
-(13, 2, 0, 'FIBRA ACTIVA', 'FIBRA', '', 'BOTE MEDIANO', 'BOTE', 'MANZANA', 1, 1, 1, 'AC'),
-(14, 2, 0, 'H24 REBUILD STRENGTH', 'NUTRICION PARA RECUPERACION', '1000 GR', 'BOTE GRANDE', 'BOTE', 'S/S', 1, 1, 1, 'AC'),
-(15, 2, 0, 'H24 CR7', 'BEBIDA HIDRATANTE DEPORTISTAS ', '24 GR', 'BOTE MEDIANO', 'BOTE', 'S/S', 1, 1, 1, 'AC');
+INSERT INTO `ve_productos` (`id`, `codad_empresa`, `idve_linea`, `valor1`, `valor2`, `descripcion_producto`, `composicion`, `presentacion`, `unidad`, `sabor`, `vencimiento`, `valoracion`, `precioporcentaje`, `estado`) VALUES
+(1, 2, 1, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '', '550 GR.', 'BOTE GRANDE', 'BOTE', 'NARANJA', 1, 1, 1, 'AC'),
+(2, 2, 1, 'PDM / PROTEIN DRINK MIX', 'PROTEINA', '', '616 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 1, 1, 1, 'AC'),
+(3, 2, 1, 'FORMULA 1 /MEZXLA NUTRICIONAL PROTEICA ', 'BATIDO', '', '550 GR.', 'BOTE GRANDE', 'BOTE', 'VAINILLA', 1, 1, 1, 'AC'),
+(4, 2, 1, 'PERFORMANCE PROTEIN POWDER', 'PROTEINA NATURAL', '', '', 'BOTE MEDIANO', 'BOTE', 'NORMAL', 1, 1, 1, 'AC'),
+(5, 2, 1, 'BARRAS DE PROTEINA DELUZA', 'BARRAS DE PROTEINA', '', '14 UNIDADES', 'BARRAS PEQUEÑAS', 'BARRA', 'VAINILLA CON ALMENDRAS', 1, 1, 1, 'AC'),
+(6, 2, 1, 'FORMULA 2 VITAMINA-MINERAL HERBAL', 'VITAMINAS', '', '', 'TABLETAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(7, 2, 1, 'NRG', 'NATURE''S RAW GUARANA TEA ', '', '50GR', 'FRASCO', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(8, 2, 1, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '', '100 GR', 'FRASCO', 'FRASCO', 'LIMON', 1, 1, 1, 'AC'),
+(9, 2, 1, 'THEMO HERBAL CONCENTRATE', 'TE DE HIERBAS', '', '51 GR', 'FRASCO', 'FRASCO', 'CHAI', 1, 1, 1, 'AC'),
+(10, 2, 1, 'XTRA-CAL', 'TABLETAS DE CALCIO', '', '', 'TABLETAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(11, 2, 1, 'HERBAL ALOE DRINK ', 'JUGO CONCENTRADO DE SABILA', '', 'SABILA', 'BOTE DELGADO', 'BOTE', 'NATURAL', 1, 1, 1, 'AC'),
+(12, 2, 1, 'HERBALIFELINE', 'CAPSULAS DE ACEITE DE PESCADO', '', '', 'CAPSULAS', 'FRASCO', 'S/S', 1, 1, 1, 'AC'),
+(13, 2, 1, 'FIBRA ACTIVA', 'FIBRA', '', '', 'BOTE MEDIANO', 'BOTE', 'MANZANA', 1, 1, 1, 'AC'),
+(14, 2, 1, 'H24 REBUILD STRENGTH', 'NUTRICION PARA RECUPERACION', '', '1000 GR', 'BOTE GRANDE', 'BOTE', 'S/S', 1, 1, 1, 'AC'),
+(15, 2, 1, 'H24 CR7', 'BEBIDA HIDRATANTE DEPORTISTAS ', '', '24 GR', 'BOTE MEDIANO', 'BOTE', 'S/S', 1, 1, 1, 'AC');
 
 -- --------------------------------------------------------
 
@@ -611,8 +717,8 @@ INSERT INTO `ve_productos` (`id`, `codad_empresa`, `idve_proveedor`, `valor1`, `
 CREATE TABLE IF NOT EXISTS `ve_proveedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codad_empresa` int(11) NOT NULL,
-  `nombre_pro` varchar(200) NOT NULL,
-  `linea` varchar(100) NOT NULL,
+  `idve_linea` int(11) NOT NULL,
+  `nombre_proveedor` varchar(200) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `estado` varchar(20) NOT NULL,
@@ -640,21 +746,21 @@ CREATE TABLE IF NOT EXISTS `ve_totales` (
 --
 
 INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `estado`) VALUES
-(1, 1, 2, 162, 300, 'ac'),
-(2, 2, 5, 214.2, 400, 'AC'),
-(3, 3, 0, 0, 0, 'AC'),
-(4, 4, 0, 0, 0, 'AC'),
-(5, 5, 0, 0, 0, 'AC'),
-(6, 6, 0, 0, 0, 'ac'),
-(7, 7, 5, 200, 200, 'AC'),
-(8, 8, 0, 0, 0, 'AC'),
-(9, 9, 0, 0, 0, 'AC'),
-(10, 10, 0, 0, 0, 'AC'),
-(11, 11, 0, 0, 0, 'AC'),
-(12, 12, 0, 0, 0, 'AC'),
-(13, 13, 0, 0, 0, 'AC'),
-(14, 14, 0, 0, 0, 'AC'),
-(15, 15, 0, 0, 0, 'AC');
+(1, 1, 0, 162, 300, 'ac'),
+(2, 2, 0, 214.2, 400, 'AC'),
+(3, 3, 0, 162, 300, 'AC'),
+(4, 4, 0, 131.5, 250, 'AC'),
+(5, 5, 0, 151.3, 280, 'AC'),
+(6, 6, 0, 73.2, 140, 'ac'),
+(7, 7, 0, 108, 200, 'AC'),
+(8, 8, 0, 226, 405, 'AC'),
+(9, 9, 0, 129.2, 250, 'AC'),
+(10, 10, 0, 75, 145, 'AC'),
+(11, 11, 0, 183, 320, 'AC'),
+(12, 12, 0, 189, 335, 'AC'),
+(13, 13, 0, 168, 310, 'AC'),
+(14, 14, 0, 379, 630, 'AC'),
+(15, 15, 0, 166.3, 250, 'AC');
 
 -- --------------------------------------------------------
 
@@ -704,17 +810,47 @@ CREATE TABLE IF NOT EXISTS `ve_ventas` (
   `idad_usuario` int(11) NOT NULL,
   `idve_cliente` int(11) NOT NULL,
   `idve_producto` int(11) NOT NULL,
-  `idve_valorizacion` int(11) NOT NULL,
+  `idve_porcentaje` int(11) NOT NULL,
   `numero_venta` int(11) NOT NULL,
   `compra` float NOT NULL,
   `precio` float NOT NULL,
   `cantidad` float NOT NULL,
   `total` float NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fecha` date NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `tipoventa` int(11) NOT NULL DEFAULT '1',
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+
+--
+-- Volcado de datos para la tabla `ve_ventas`
+--
+
+INSERT INTO `ve_ventas` (`id`, `codad_empresa`, `idad_usuario`, `idve_cliente`, `idve_producto`, `idve_porcentaje`, `numero_venta`, `compra`, `precio`, `cantidad`, `total`, `fecha`, `fecha_hora`, `tipoventa`, `estado`) VALUES
+(1, 2, 11, 0, 7, 33, 1, 108, 120.3, 1, 120.3, '0000-00-00', '2019-09-26 04:00:00', 0, 'AC'),
+(2, 2, 11, 0, 2, 10, 2, 214.2, 400, 5, 2000, '0000-00-00', '2019-09-26 04:00:00', 0, 'AC'),
+(3, 2, 11, 0, 2, 10, 3, 214.2, 400, 1, 400, '0000-00-00', '2019-09-26 04:00:00', 0, 'AC'),
+(4, 2, 11, 0, 8, 40, 3, 226, 405, 1, 405, '0000-00-00', '2019-09-26 04:00:00', 0, 'AC'),
+(5, 2, 11, 0, 10, 50, 4, 75, 145, 1, 145, '0000-00-00', '2019-09-26 06:52:00', 0, 'AC'),
+(6, 2, 11, 0, 5, 25, 5, 151.3, 280, 1, 280, '0000-00-00', '2019-09-26 02:54:37', 0, 'AC'),
+(7, 2, 11, 0, 6, 30, 6, 73.2, 140, 1, 140, '2019-09-25', '2019-09-26 03:00:10', 0, 'AC'),
+(8, 2, 11, 0, 1, 5, 7, 162, 300, 2, 600, '2019-09-25', '2019-09-26 03:01:17', 0, 'AC'),
+(9, 2, 11, 0, 2, 10, 7, 214.2, 400, 1, 400, '2019-09-25', '2019-09-26 03:01:17', 0, 'AC'),
+(10, 2, 11, 0, 3, 15, 7, 162, 300, 1, 300, '2019-09-25', '2019-09-26 03:01:17', 0, 'AC'),
+(11, 2, 11, 0, 3, 15, 8, 162, 300, 1, 300, '2019-09-25', '2019-09-26 03:02:04', 0, 'AC'),
+(12, 2, 11, 0, 4, 20, 9, 131.5, 250, 3, 750, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(13, 2, 11, 0, 5, 25, 9, 151.3, 280, 2, 560, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(14, 2, 11, 0, 6, 30, 9, 73.2, 140, 4, 560, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(15, 2, 11, 0, 7, 35, 9, 108, 200, 5, 1000, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(16, 2, 11, 0, 8, 40, 9, 226, 405, 4, 1620, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(17, 2, 11, 0, 9, 45, 9, 129.2, 250, 6, 1500, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(18, 2, 11, 0, 10, 50, 9, 75, 145, 5, 725, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(19, 2, 11, 0, 11, 55, 9, 183, 320, 4, 1280, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(20, 2, 11, 0, 12, 60, 9, 189, 335, 4, 1340, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(21, 2, 11, 0, 13, 65, 9, 168, 310, 2, 620, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(22, 2, 11, 0, 14, 70, 9, 379, 630, 1, 630, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
+(23, 2, 11, 0, 15, 75, 9, 166.3, 250, 3, 750, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC');
 
 -- --------------------------------------------------------
 

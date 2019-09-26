@@ -24,4 +24,25 @@
   return $valoreacion;  
  }
 
+ function fecha()
+ {
+    /*$datestring = " %Y-%m-%d - %h:%i:%a"; 
+    $time = time(); 
+    $fecha =  mdate($datestring, $time);*/
+    $fecha = date('Y-m-j H:i:s');
+    $nuevafecha = strtotime ( '-4 hour' , strtotime ( $fecha ) ) ;
+    $fecha = date ( 'Y-m-j' , $nuevafecha );
+    return $fecha;
+ }
+ function fecha_hora()
+ {
+    /*$datestring = " %Y-%m-%d - %h:%i:%a"; 
+    $time = time(); 
+    $fecha =  mdate($datestring, $time);*/
+    $fecha = date('Y-m-j H:i:s');
+    $nuevafecha = strtotime ( '-4 hour' , strtotime ( $fecha ) ) ;
+    $fecha = date ( 'Y-m-j H:i:s' , $nuevafecha );
+    return $fecha;
+ }
+
  ?> 
