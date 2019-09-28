@@ -74,7 +74,7 @@ class Ventas extends CI_Controller
 				$datos ='[{
 					     "id":"'.$filas[0]->id.'",
 						 "codad_empresa":"'.$filas[0]->codad_empresa.'",
-						 "idve_proveedor":"'.$filas[0]->idve_proveedor.'",
+						 "idve_linea":"'.$filas[0]->idve_linea.'",
 						 "valor1":"'.$filas[0]->valor1.'",
 						 "valor2":"'.$filas[0]->valor2.'",
 						 "composicion":"'.$filas[0]->composicion.'",

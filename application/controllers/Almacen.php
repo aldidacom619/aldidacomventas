@@ -57,6 +57,7 @@ class Almacen extends CI_Controller
 		$id_usu = $this->session->userdata('id');
 		$empresa = $this->session->userdata('codad_empresa');
 		$id_pro = $this->input->get('id');
+
 		
 		if (!($this->almacen_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
 		{
@@ -79,7 +80,7 @@ class Almacen extends CI_Controller
 			$datos ='[{
 				     "id":"'.$filas[0]->id.'",
 					 "codad_empresa":"'.$filas[0]->codad_empresa.'",
-					 "idve_proveedor":"'.$filas[0]->idve_proveedor.'",
+					 "idve_linea":"'.$filas[0]->idve_linea.'",
 					 "valor1":"'.$filas[0]->valor1.'",
 					 "valor2":"'.$filas[0]->valor2.'",
 					 "composicion":"'.$filas[0]->composicion.'",
@@ -180,9 +181,7 @@ class Almacen extends CI_Controller
 	}
 	function registrar_ingreso()
 	{
-		$datestring = " %Y-%m-%d";
-		$time = time();
-		$fecha =  mdate($datestring, $time);
+		$fecha =  fecha();
 		$empresa = $this->session->userdata('codad_empresa');
 		$id_usu = $this->session->userdata('id');
 		$con = 0;

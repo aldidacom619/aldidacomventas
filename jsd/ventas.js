@@ -116,7 +116,8 @@ function formactualizar(idproducto)
                             {
                                 $('#idprocentajeselect').hide();
                                 $('#compra').attr('readonly', false);
-                                $('#venta').attr('readonly', false);
+                                $('#venta').attr('readonly', true);
+                                $('#venta').val(datos.venta);
                             } 
                             if(datos.vencimiento == 1)
                             { 
