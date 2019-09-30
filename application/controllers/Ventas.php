@@ -6,6 +6,7 @@ class Ventas extends CI_Controller
 		parent::__construct();	
 		$this->_is_logued_in();	
 		$this->load->helper('menu_helper');
+		$this->load->helper('configuraciones_helper');	
 		$this->load->model('roles_model');
 		$this->load->model('ventas_model');		
 		$this->load->helper(array('form', 'url'));
@@ -30,9 +31,10 @@ class Ventas extends CI_Controller
 			$dato['usuario'] = $this->session->userdata('usuario');
 			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
+
+			$vista   = selec_configuracion($empresa,"VISTA VENTA PRODUCTOS");
 			$dato['totales'] = $this->ventas_model->almacen_totales($empresa);
-			$dato['prodvirtuales'] =$this->ventas_model->listaproductoselecionado($empresa,$id_usu);
-			$vista = "venta_productos";
+			$dato['prodvirtuales'] =$this->ventas_model->listaproductoselecionado($empresa,$id_usu); 			
 			$this->load->view("Inicio/cabecera");				
 			$this->load->view("Inicio/menu",$dato);		
 			$this->load->view("Ventas/".$vista,$dato);		

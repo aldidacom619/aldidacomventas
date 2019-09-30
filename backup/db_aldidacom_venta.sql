@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-09-2019 a las 01:53:36
+-- Tiempo de generación: 30-09-2019 a las 17:51:08
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -87,25 +87,27 @@ CREATE TABLE IF NOT EXISTS `ad_configuraciones_empresas` (
   `fecha` date NOT NULL,
   `fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Volcado de datos para la tabla `ad_configuraciones_empresas`
 --
 
 INSERT INTO `ad_configuraciones_empresas` (`id`, `codad_empresa`, `concepto`, `valor1`, `valor2`, `valor3`, `valor4`, `valor5`, `fecha`, `fecha_registro`) VALUES
-(1, 2, 'VISTA ACTUALIZAR ALMACEN', 'actualizar_almacen_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(2, 3, 'VISTA ACTUALIZAR ALMACEN', 'actualizar_almacen', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(3, 2, 'MODELO TOTALES', 'almacen_totales_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(4, 2, 'MODELO PRODUCTOS A SELECCIONAR', 'listaproductoselecionado_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(5, 3, 'MODELO TOTALES', 'almacen_totales', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(6, 3, 'MODELO PRODUCTOS A SELECCIONAR', 'listaproductoselecionado', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(7, 2, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(8, 3, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(1, 2, 'VISTA ACTUALIZAR ALMACEN', 'actualizar_almacen_valoracion', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(2, 3, 'VISTA ACTUALIZAR ALMACEN', 'actualizar_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(3, 2, 'MODELO TOTALES', 'almacen_totales_valoracion', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(4, 2, 'MODELO PRODUCTOS A SELECCIONAR', 'listaproductoselecionado_valoracion', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(5, 3, 'MODELO TOTALES', 'almacen_totales', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(6, 3, 'MODELO PRODUCTOS A SELECCIONAR', 'listaproductoselecionado', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(7, 2, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos_valoracion', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(8, 3, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
 (9, 2, 'MODELO DETALLE ALMACEN', 'almacen_detalles_valoracion', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
 (10, 3, 'MODELO DETALLE ALMACEN', 'almacen_detalles', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
 (11, 2, 'VISTA DETALLE ALMACEN', 'detalle_almacen_valoracion', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(12, 3, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00');
+(12, 3, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(13, 2, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(14, 3, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -395,7 +397,15 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `fecha_vencimiento` date NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+
+--
+-- Volcado de datos para la tabla `ve_acumulador_almacen`
+--
+
+INSERT INTO `ve_acumulador_almacen` (`id`, `codad_empresa`, `idad_usuario`, `idve_producto`, `porcentaje`, `idve_porcentaje`, `entrada`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `estado`) VALUES
+(40, 2, 11, 1, 1, 4, 2, 162, 300, 1, '2019-12-20', 'AC'),
+(41, 2, 11, 4, 1, 19, 15, 131.5, 250, 1, '2020-05-30', 'AC');
 
 -- --------------------------------------------------------
 
