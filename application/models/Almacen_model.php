@@ -167,6 +167,30 @@ class Almacen_model extends CI_Model
 		$this->db->insert('ve_almacenes',$data);
 		return $this->db->insert_id();
 	}
+	/*CONSULTAS ALMACEN DETALLE*/
+
+	function almacen_detalles_valoracion($empresa)
+	{
+		$query = $this->db->query("select *
+									  from ve_productos p,
+									       ve_valorizaciones v,
+									       ve_almacenes a
+									 where p.id = a.idve_producto
+									   and p.id = v.idve_producto
+									   and p.codad_empresa = ".$empresa."
+									   order by a.id asc");	
+        return $query->result();
+	}
+	function almacen_detalles($empresa)
+	{
+		$query = $this->db->query("select *
+									  from ve_productos p,
+									       ve_almacenes a
+									 where p.id = a.idve_producto
+									   and p.codad_empresa =".$empresa."
+									 order by a.id asc");	
+        return $query->result();
+	}
 
 	
 }

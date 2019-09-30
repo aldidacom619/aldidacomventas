@@ -313,6 +313,30 @@ class Almacen extends CI_Controller
 					
 		echo $retorno;
 	}
+	function detalle_almacen()
+	{
+		if(1 == 1)
+		{
+			$id_usu = $this->session->userdata('id');
+			$empresa = $this->session->userdata('codad_empresa');
+			$dato['id_usu'] = $id_usu;
+			$dato['usuario'] = $this->session->userdata('usuario');
+			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
+			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);		
+			$metodo1 = selec_configuracion($empresa,"MODELO DETALLE ALMACEN");			
+			$vista   = selec_configuracion($empresa,"VISTA DETALLE ALMACEN");			
+			$dato['totales'] = $this->almacen_model->$metodo1($empresa);			
+		 	$this->load->view("Inicio/cabecera");				
+			$this->load->view("Inicio/menu",$dato);		
+			$this->load->view("Almacen/".$vista,$dato);		
+			$this->load->view("Inicio/pie");
+		}
+		else
+		{
+			redirect("inicio");
+		}
+	}
+
 	function comprobarconfiguracion()
 	{
 		$empresa = $this->session->userdata('codad_empresa');
@@ -322,5 +346,11 @@ class Almacen extends CI_Controller
 		$vista   = selec_configuracion($empresa,"VISTA ACTUALIZAR ALMACEN");
 		echo $metodo1." - ".$metodo2." - ".$vista;
 	}	
+	function GetClientMac()
+	{  
+		ob_start(); system('ipconfig /all'); $mycom=ob_get_contents(); ob_clean(); $findme = 'physique'; $pmac = strpos($mycom, $findme); $mac=substr($mycom,($pmac+33),17); echo $mac;
+	}
+
+
 }	
 ?>

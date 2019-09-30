@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-09-2019 a las 00:13:59
+-- Tiempo de generación: 30-09-2019 a las 01:53:36
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `ad_configuraciones_empresas` (
   `fecha` date NOT NULL,
   `fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `ad_configuraciones_empresas`
@@ -101,7 +101,11 @@ INSERT INTO `ad_configuraciones_empresas` (`id`, `codad_empresa`, `concepto`, `v
 (5, 3, 'MODELO TOTALES', 'almacen_totales', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
 (6, 3, 'MODELO PRODUCTOS A SELECCIONAR', 'listaproductoselecionado', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
 (7, 2, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(8, 3, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00');
+(8, 3, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(9, 2, 'MODELO DETALLE ALMACEN', 'almacen_detalles_valoracion', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(10, 3, 'MODELO DETALLE ALMACEN', 'almacen_detalles', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(11, 2, 'VISTA DETALLE ALMACEN', 'detalle_almacen_valoracion', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(12, 3, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -241,7 +245,7 @@ INSERT INTO `ad_opciones` (`codigo`, `codad_modulo`, `codad_opcion`, `opcion`, `
 (40, 17, 31, 'VALORIZACION PRODUCT', '', '', 2, 4, 'AC'),
 (41, 17, 31, 'MODIFICAR PRODUCTO', '', '', 2, 5, 'AC'),
 (42, 17, 31, 'BAJA PRODUCTO', '', '', 2, 6, 'AC'),
-(43, 21, 34, 'DETALLE ALMACEN', '', '', 2, 1, 'AC'),
+(43, 21, 34, 'DETALLE ALMACEN', '', 'Almacen/detalle_almacen', 2, 1, 'AC'),
 (44, 21, 34, 'ACTUALIZAR ALMACEN', '', 'Almacen', 2, 2, 'AC'),
 (45, 20, 30, 'REGISTRAR VENTA', '', 'Ventas', 2, 1, 'AC'),
 (46, 20, 30, 'REGISTRAR DEVOLUCION', '', '', 2, 2, 'AC'),
@@ -411,7 +415,7 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_venta` (
   `precio_venta` float NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 -- --------------------------------------------------------
 
@@ -468,10 +472,10 @@ INSERT INTO `ve_almacenes` (`id`, `idad_usuario`, `idve_producto`, `idve_proveed
 (24, 13, 813, 0, 0, 20, 0, 20, 2.8, 4.2, 1, '2020-09-25', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
 (25, 13, 43, 0, 0, 50, 0, 50, 3, 4.2, 1, '2020-09-26', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
 (26, 13, 23, 0, 0, 15, 0, 15, 6.25, 8.2, 1, '2020-02-14', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
-(27, 11, 3, 0, 14, 2, 0, 2, 162, 300, 1, '2020-01-24', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(27, 11, 3, 0, 14, 2, 1, 1, 162, 300, 1, '2020-01-24', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
 (28, 13, 862, 0, 0, 3, 0, 3, 25, 32, 1, '2020-04-25', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
 (29, 13, 49, 0, 0, 50, 0, 50, 5, 6.5, 1, '2020-03-14', '2019-09-29', '2019-09-29 20:02:44', 0, 0, '', 'AC', 0),
-(30, 11, 1, 0, 4, 1, 0, 1, 162, 300, 1, '2020-02-22', '2019-09-29', '2019-09-29 20:12:20', 0, 0, '', 'AC', 0);
+(30, 11, 1, 0, 4, 1, 1, 0, 162, 300, 1, '2020-02-22', '2019-09-29', '2019-09-29 20:12:20', 0, 0, '', 'AC', 0);
 
 -- --------------------------------------------------------
 
@@ -1653,9 +1657,9 @@ CREATE TABLE IF NOT EXISTS `ve_totales` (
 --
 
 INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `estado`) VALUES
-(1, 1, 1, 162, 300, 'ac'),
+(1, 1, 0, 162, 300, 'ac'),
 (2, 2, 0, 214.2, 400, 'AC'),
-(3, 3, 2, 162, 300, 'AC'),
+(3, 3, 1, 162, 300, 'AC'),
 (4, 4, 0, 131.5, 250, 'AC'),
 (5, 5, 0, 151.3, 280, 'AC'),
 (6, 6, 0, 73.2, 140, 'ac'),
@@ -2610,7 +2614,7 @@ CREATE TABLE IF NOT EXISTS `ve_ventas` (
   `tipoventa` int(11) NOT NULL DEFAULT '1',
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Volcado de datos para la tabla `ve_ventas`
@@ -2640,7 +2644,9 @@ INSERT INTO `ve_ventas` (`id`, `codad_empresa`, `idad_usuario`, `idve_cliente`, 
 (21, 2, 11, 0, 13, 65, 9, 168, 310, 2, 620, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
 (22, 2, 11, 0, 14, 70, 9, 379, 630, 1, 630, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
 (23, 2, 11, 0, 15, 75, 9, 166.3, 250, 3, 750, '2019-09-25', '2019-09-26 03:15:02', 0, 'AC'),
-(24, 3, 13, 0, 19, 0, 1, 2.5, 3.7, 1, 3.7, '2019-09-26', '2019-09-27 03:31:55', 0, 'AC');
+(24, 3, 13, 0, 19, 0, 1, 2.5, 3.7, 1, 3.7, '2019-09-26', '2019-09-27 03:31:55', 0, 'AC'),
+(25, 2, 11, 0, 1, 5, 10, 162, 300, 1, 300, '2019-09-29', '2019-09-30 01:13:43', 0, 'AC'),
+(26, 2, 11, 0, 3, 15, 11, 162, 300, 1, 300, '2019-09-29', '2019-09-30 01:14:22', 0, 'AC');
 
 -- --------------------------------------------------------
 
