@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-09-2019 a las 11:38:06
+-- Tiempo de generación: 30-09-2019 a las 00:13:59
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `ad_aplicaciones` (
 
 INSERT INTO `ad_aplicaciones` (`codigo`, `descripcion`, `abreviatura`, `nombre_aplicacion`, `user_administrador`, `estado`) VALUES
 (8, 'APLICACION PRINCIPAL', 'ADMIN', 'ADMINISTRACION', 'SI', 'AC'),
-(9, 'SISTEMA DE VENTAS', 'SV', 'SISTEMA DE VENTAS', 'NO', 'AC'),
+(9, 'SISTEMA DE VENTAS HERBALIFE', 'SV', 'SISTEMA DE VENTAS HERBALIFE', 'NO', 'AC'),
 (10, 'SISTEMA DE VENTAS FARMACIA', 'SVF', 'SISTEMA DE VENTAS FARMACIA', 'SI', 'AC');
 
 -- --------------------------------------------------------
@@ -84,10 +84,24 @@ CREATE TABLE IF NOT EXISTS `ad_configuraciones_empresas` (
   `valor3` varchar(100) NOT NULL,
   `valor4` varchar(100) NOT NULL,
   `valor5` varchar(100) NOT NULL,
-  `fecha` datetime NOT NULL,
+  `fecha` date NOT NULL,
   `fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `ad_configuraciones_empresas`
+--
+
+INSERT INTO `ad_configuraciones_empresas` (`id`, `codad_empresa`, `concepto`, `valor1`, `valor2`, `valor3`, `valor4`, `valor5`, `fecha`, `fecha_registro`) VALUES
+(1, 2, 'VISTA ACTUALIZAR ALMACEN', 'actualizar_almacen_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(2, 3, 'VISTA ACTUALIZAR ALMACEN', 'actualizar_almacen', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(3, 2, 'MODELO TOTALES', 'almacen_totales_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(4, 2, 'MODELO PRODUCTOS A SELECCIONAR', 'listaproductoselecionado_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(5, 3, 'MODELO TOTALES', 'almacen_totales', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(6, 3, 'MODELO PRODUCTOS A SELECCIONAR', 'listaproductoselecionado', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(7, 2, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos_valoracion', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(8, 3, 'VISTA ACUMULADOR ALMACEN', 'lista_acumulador_datos', '', '', '', '', '2019-09-02', '2019-09-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -97,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `ad_configuraciones_empresas` (
 
 CREATE TABLE IF NOT EXISTS `ad_empresas` (
   `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `codad_aplicacion` int(11) NOT NULL,
   `denominacion` varchar(100) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `abreviatura` varchar(100) NOT NULL,
@@ -114,10 +129,10 @@ CREATE TABLE IF NOT EXISTS `ad_empresas` (
 -- Volcado de datos para la tabla `ad_empresas`
 --
 
-INSERT INTO `ad_empresas` (`codigo`, `denominacion`, `correo`, `abreviatura`, `propietario`, `telefono`, `direccion`, `descripcion_entidad`, `fecha`, `valoracionproducto`, `estado`) VALUES
-(1, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 0, 'AC'),
-(2, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com	', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 1, 'AC'),
-(3, 'VENTA LETICIA FARMACIA', 'lety@gmail.com', 'VLF', 'DORIS DAZA', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS FARMACEUTICOS', '2019-09-26', 0, 'AC');
+INSERT INTO `ad_empresas` (`codigo`, `codad_aplicacion`, `denominacion`, `correo`, `abreviatura`, `propietario`, `telefono`, `direccion`, `descripcion_entidad`, `fecha`, `valoracionproducto`, `estado`) VALUES
+(1, 0, 'ADMINISTRACION SISTEMA', 'aldidacom@gmail.com', 'VLH', 'ALVARO DIEGO DAZA ALCARAZ', '78720504', 'DELICIAS', 'ADMINISTRACION SISTEMA', '2019-09-11', 0, 'AC'),
+(2, 9, 'VENTA LETICIA HERBALIFE', 'lety@gmail.com	', 'VLH', 'LETICIA DORIS DAZA ALCARAZ', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS DE HERBALIFE', '2019-09-11', 1, 'AC'),
+(3, 10, 'VENTA LETICIA FARMACIA', 'lety@gmail.com', 'VLF', 'DORIS DAZA', '72433002', 'DELICIAS', 'VENTA DE PRODUCTOS FARMACEUTICOS', '2019-09-26', 0, 'AC');
 
 -- --------------------------------------------------------
 
@@ -376,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `fecha_vencimiento` date NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 -- --------------------------------------------------------
 
@@ -418,37 +433,45 @@ CREATE TABLE IF NOT EXISTS `ve_almacenes` (
   `vencimiento` int(11) NOT NULL,
   `fecha_vencimiento` date NOT NULL,
   `fecha` date NOT NULL,
+  `fecha_hora_ingreso` datetime NOT NULL,
   `factura` int(11) NOT NULL DEFAULT '1',
   `num_factura` int(11) NOT NULL,
   `observaciones` varchar(200) NOT NULL,
   `estado` varchar(20) NOT NULL,
   `tipoingreso` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Volcado de datos para la tabla `ve_almacenes`
 --
 
-INSERT INTO `ve_almacenes` (`id`, `idad_usuario`, `idve_producto`, `idve_proveedor`, `idve_porcentaje`, `entrada`, `salida`, `saldo`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `fecha`, `factura`, `num_factura`, `observaciones`, `estado`, `tipoingreso`) VALUES
-(6, 11, 7, 0, 35, 5, 5, 0, 200, 200, 1, '2019-11-23', '2019-09-16', 0, 0, '', 'AC', 0),
-(7, 11, 1, 0, 4, 2, 2, 0, 162, 300, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0),
-(8, 11, 2, 0, 9, 5, 5, 0, 214.2, 400, 1, '2019-11-30', '2019-09-16', 0, 0, '', 'AC', 0),
-(9, 11, 2, 0, 9, 2, 2, 0, 214.2, 400, 1, '2020-01-24', '2019-09-24', 0, 0, '', 'AC', 0),
-(10, 11, 7, 0, 34, 1, 1, 0, 108, 200, 1, '2019-09-01', '2019-09-24', 0, 0, '', 'AC', 0),
-(11, 11, 3, 0, 14, 2, 2, 0, 162, 300, 1, '2020-01-24', '2019-09-24', 0, 0, '', 'AC', 0),
-(12, 11, 5, 0, 24, 3, 3, 0, 151.3, 280, 1, '2020-04-30', '2019-09-24', 0, 0, '', 'AC', 0),
-(13, 11, 6, 0, 29, 5, 5, 0, 73.2, 140, 1, '2020-02-01', '2019-09-24', 0, 0, '', 'AC', 0),
-(14, 11, 4, 0, 19, 3, 3, 0, 131.5, 250, 1, '2020-03-28', '2019-09-24', 0, 0, '', 'AC', 0),
-(15, 11, 8, 0, 39, 5, 5, 0, 226, 405, 1, '2020-06-20', '2019-09-24', 0, 0, '', 'AC', 0),
-(16, 11, 9, 0, 44, 6, 6, 0, 129.2, 250, 1, '2020-05-15', '2019-09-24', 0, 0, '', 'AC', 0),
-(17, 11, 10, 0, 49, 6, 6, 0, 75, 145, 1, '2020-05-02', '2019-09-24', 0, 0, '', 'AC', 0),
-(18, 11, 11, 0, 54, 4, 4, 0, 183, 320, 1, '2020-08-29', '2019-09-24', 0, 0, '', 'AC', 0),
-(19, 11, 12, 0, 59, 4, 4, 0, 189, 335, 1, '2020-05-30', '2019-09-24', 0, 0, '', 'AC', 0),
-(20, 11, 13, 0, 64, 2, 2, 0, 214.2, 400, 1, '2020-08-01', '2019-09-24', 0, 0, '', 'AC', 0),
-(21, 11, 14, 0, 69, 1, 1, 0, 379, 630, 1, '2020-06-12', '2019-09-24', 0, 0, '', 'AC', 0),
-(22, 11, 15, 0, 74, 3, 3, 0, 166.3, 250, 1, '2020-07-24', '2019-09-24', 0, 0, '', 'AC', 0),
-(23, 13, 19, 0, 0, 10, 1, 9, 2.5, 3.7, 1, '2020-12-12', '2019-09-27', 0, 0, '', 'AC', 0);
+INSERT INTO `ve_almacenes` (`id`, `idad_usuario`, `idve_producto`, `idve_proveedor`, `idve_porcentaje`, `entrada`, `salida`, `saldo`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `fecha`, `fecha_hora_ingreso`, `factura`, `num_factura`, `observaciones`, `estado`, `tipoingreso`) VALUES
+(6, 11, 7, 0, 35, 5, 5, 0, 200, 200, 1, '2019-11-23', '2019-09-16', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(7, 11, 1, 0, 4, 2, 2, 0, 162, 300, 1, '2019-11-30', '2019-09-16', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(8, 11, 2, 0, 9, 5, 5, 0, 214.2, 400, 1, '2019-11-30', '2019-09-16', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(9, 11, 2, 0, 9, 2, 2, 0, 214.2, 400, 1, '2020-01-24', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(10, 11, 7, 0, 34, 1, 1, 0, 108, 200, 1, '2019-09-01', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(11, 11, 3, 0, 14, 2, 2, 0, 162, 300, 1, '2020-01-24', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(12, 11, 5, 0, 24, 3, 3, 0, 151.3, 280, 1, '2020-04-30', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(13, 11, 6, 0, 29, 5, 5, 0, 73.2, 140, 1, '2020-02-01', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(14, 11, 4, 0, 19, 3, 3, 0, 131.5, 250, 1, '2020-03-28', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(15, 11, 8, 0, 39, 5, 5, 0, 226, 405, 1, '2020-06-20', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(16, 11, 9, 0, 44, 6, 6, 0, 129.2, 250, 1, '2020-05-15', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(17, 11, 10, 0, 49, 6, 6, 0, 75, 145, 1, '2020-05-02', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(18, 11, 11, 0, 54, 4, 4, 0, 183, 320, 1, '2020-08-29', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(19, 11, 12, 0, 59, 4, 4, 0, 189, 335, 1, '2020-05-30', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(20, 11, 13, 0, 64, 2, 2, 0, 214.2, 400, 1, '2020-08-01', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(21, 11, 14, 0, 69, 1, 1, 0, 379, 630, 1, '2020-06-12', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(22, 11, 15, 0, 74, 3, 3, 0, 166.3, 250, 1, '2020-07-24', '2019-09-24', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(23, 13, 19, 0, 0, 10, 1, 9, 2.5, 3.7, 1, '2020-12-12', '2019-09-27', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(24, 13, 813, 0, 0, 20, 0, 20, 2.8, 4.2, 1, '2020-09-25', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(25, 13, 43, 0, 0, 50, 0, 50, 3, 4.2, 1, '2020-09-26', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(26, 13, 23, 0, 0, 15, 0, 15, 6.25, 8.2, 1, '2020-02-14', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(27, 11, 3, 0, 14, 2, 0, 2, 162, 300, 1, '2020-01-24', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(28, 13, 862, 0, 0, 3, 0, 3, 25, 32, 1, '2020-04-25', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
+(29, 13, 49, 0, 0, 50, 0, 50, 5, 6.5, 1, '2020-03-14', '2019-09-29', '2019-09-29 20:02:44', 0, 0, '', 'AC', 0),
+(30, 11, 1, 0, 4, 1, 0, 1, 162, 300, 1, '2020-02-22', '2019-09-29', '2019-09-29 20:12:20', 0, 0, '', 'AC', 0);
 
 -- --------------------------------------------------------
 
@@ -1630,9 +1653,9 @@ CREATE TABLE IF NOT EXISTS `ve_totales` (
 --
 
 INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `estado`) VALUES
-(1, 1, 0, 162, 300, 'ac'),
+(1, 1, 1, 162, 300, 'ac'),
 (2, 2, 0, 214.2, 400, 'AC'),
-(3, 3, 0, 162, 300, 'AC'),
+(3, 3, 2, 162, 300, 'AC'),
 (4, 4, 0, 131.5, 250, 'AC'),
 (5, 5, 0, 151.3, 280, 'AC'),
 (6, 6, 0, 73.2, 140, 'ac'),
@@ -1652,7 +1675,7 @@ INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `es
 (20, 20, 0, 0, 0, 'AC'),
 (21, 21, 0, 0, 0, 'AC'),
 (22, 22, 0, 0, 0, 'AC'),
-(23, 23, 0, 0, 0, 'AC'),
+(23, 23, 15, 6.25, 8.2, 'AC'),
 (24, 24, 0, 0, 0, 'AC'),
 (25, 25, 0, 0, 0, 'AC'),
 (26, 26, 0, 0, 0, 'AC'),
@@ -1672,13 +1695,13 @@ INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `es
 (40, 40, 0, 0, 0, 'AC'),
 (41, 41, 0, 0, 0, 'AC'),
 (42, 42, 0, 0, 0, 'AC'),
-(43, 43, 0, 0, 0, 'AC'),
+(43, 43, 50, 3, 4.2, 'AC'),
 (44, 44, 0, 0, 0, 'AC'),
 (45, 45, 0, 0, 0, 'AC'),
 (46, 46, 0, 0, 0, 'AC'),
 (47, 47, 0, 0, 0, 'AC'),
 (48, 48, 0, 0, 0, 'AC'),
-(49, 49, 0, 0, 0, 'AC'),
+(49, 49, 50, 5, 6.5, 'AC'),
 (50, 50, 0, 0, 0, 'AC'),
 (51, 51, 0, 0, 0, 'AC'),
 (52, 52, 0, 0, 0, 'AC'),
@@ -2442,7 +2465,7 @@ INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `es
 (810, 810, 0, 0, 0, 'AC'),
 (811, 811, 0, 0, 0, 'AC'),
 (812, 812, 0, 0, 0, 'AC'),
-(813, 813, 0, 0, 0, 'AC'),
+(813, 813, 20, 2.8, 4.2, 'AC'),
 (814, 814, 0, 0, 0, 'AC'),
 (815, 815, 0, 0, 0, 'AC'),
 (816, 816, 0, 0, 0, 'AC'),
@@ -2491,7 +2514,7 @@ INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `es
 (859, 859, 0, 0, 0, 'AC'),
 (860, 860, 0, 0, 0, 'AC'),
 (861, 861, 0, 0, 0, 'AC'),
-(862, 862, 0, 0, 0, 'AC'),
+(862, 862, 3, 25, 32, 'AC'),
 (863, 863, 0, 0, 0, 'AC'),
 (864, 864, 0, 0, 0, 'AC'),
 (865, 865, 0, 0, 0, 'AC'),

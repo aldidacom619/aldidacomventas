@@ -15,14 +15,7 @@
   }
  }
 
- function empresa_valoracion($empresa)
- {
-  $fila =& get_instance();  
-  $fila->load->model('Roles_model');
-  $rol = $fila->Roles_model->empresa_valoracion($empresa);
-  $valoreacion = $rol[0]->valoracionproducto;
-  return $valoreacion;  
- }
+ 
 
  function fecha()
  {

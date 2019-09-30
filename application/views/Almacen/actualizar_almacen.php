@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading"> 
                     Lista de Productos Almacen
                 </div>
                 <!-- /.panel-heading -->
@@ -44,7 +44,7 @@
                                     <th>Composicion</th>
                                     <th>Presentacion</th>
                                     <th>Unidad</th>
-                                    <th>Sabor</th>
+                                   
                                     <th>Precio Compra</th>
                                     <th>Precio Venta</th>                                            
                                     <th>Cantidad en Almacen</th>                                    
@@ -56,14 +56,13 @@
                                 <tr>
                                     <td ><?= $n++?></td> 
                                     <td>
-                                        <button onclick='formactualizar(<?= $fila->idve_producto?>)' class="fa fa-pencil"></button><br>
+                                        <button onclick='formactualizar(<?= $fila->idve_producto?>)' class="glyphicon glyphicon-plus-sign"></button><br>
                                     </td>                                       
                                     <td ><?= $fila->valor1?></td>
                                     <td ><?= $fila->valor2?></td>
                                     <td ><?= $fila->composicion?></td>
                                     <td ><?= $fila->presentacion?></td>
-                                    <td ><?= $fila->unidad?></td>
-                                    <td ><?= $fila->sabor?></td>
+                                    <td ><?= $fila->unidad?></td>                                    
                                     <td style="text-align: right;"><?= $fila->compra?></td>
                                     <td style="text-align: right;"><?= $fila->venta?></td>
                                     <td style="text-align: right;"><?= $fila->saldo?></td>

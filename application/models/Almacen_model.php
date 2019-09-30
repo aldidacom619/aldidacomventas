@@ -142,7 +142,7 @@ class Almacen_model extends CI_Model
 		$this->db->where('idve_producto',$id_prod);
 		return  $this->db->update('ve_totales',$data);
 	}
-	function registrar_ingreso_almacen($idad_usuario,$idve_producto,$idve_proveedor,$idve_porcentaje,$entrada,$salida,$saldo,$precio_compra,$precio_venta,$vencimiento,$fecha_vencimiento,$fecha,$factura,$num_factura,$observaciones,$estado,$tipoingreso)
+	function registrar_ingreso_almacen($idad_usuario,$idve_producto,$idve_proveedor,$idve_porcentaje,$entrada,$salida,$saldo,$precio_compra,$precio_venta,$vencimiento,$fecha_vencimiento,$fecha,$fecha_hora,$factura,$num_factura,$observaciones,$estado,$tipoingreso)
 	{
 		$data =  array(
 		  'idad_usuario' => $idad_usuario,
@@ -157,6 +157,7 @@ class Almacen_model extends CI_Model
 		  'vencimiento' => $vencimiento,
 		  'fecha_vencimiento' => $fecha_vencimiento,
 		  'fecha' => $fecha,
+		  'fecha_hora_ingreso' => $fecha_hora,		  
 		  'factura' => $factura,
 		  'num_factura' => $num_factura,
 		  'observaciones' => $observaciones,
