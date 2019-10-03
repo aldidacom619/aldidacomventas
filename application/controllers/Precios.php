@@ -1,6 +1,6 @@
 <?php
 
-class Ventas extends CI_Controller
+class Precios extends CI_Controller
 {
 	function __construct(){
 		parent::__construct();	
@@ -32,11 +32,11 @@ class Ventas extends CI_Controller
 			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
 			$metodo1 = selec_configuracion($empresa,"MODELO VENTA PRODUCTOS TOTALES");
-			$vista   = selec_configuracion($empresa,"VISTA VENTA PRODUCTOS");
+			$vista   = selec_configuracion($empresa,"VISTA PRECIOS PRODUCTO");
 			$dato['totales'] = $this->ventas_model->$metodo1($empresa);			
 			$this->load->view("Inicio/cabecera");				
 			$this->load->view("Inicio/menu",$dato);		
-			$this->load->view("Ventas/".$vista,$dato);		
+			$this->load->view("Precios/".$vista,$dato);		
 			$this->load->view("Inicio/pie");
 		}
 		else
@@ -50,54 +50,38 @@ class Ventas extends CI_Controller
 		$empresa = $this->session->userdata('codad_empresa');
 		$id_pro = $this->input->get('id');
 		
-		if (!($this->ventas_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
+		$filas = $this->ventas_model->select_almacen_totales_id($id_pro); 
+		$porcentaje = $filas[0]->precioporcentaje;
+		$option = "<option VALUE='-1'>Seleccionar porcentaje</OPTION>";
+		if($porcentaje == 1)
 		{
-			echo 1;
-		}	
-		else
-		{
-			$saldo_producto = $this->ventas_model->select_almacen_totales_id_dos($id_pro);
-			$saldo_total = $saldo_producto[0]->saldo;
-			if ($saldo_total > 0)
+			$precios=$this->ventas_model->select_porcentajeprecionproducto_id($id_pro);
+			
+			foreach ($precios as $fila) 
 			{
-				$filas = $this->ventas_model->select_almacen_totales_id($id_pro); 
-				$porcentaje = $filas[0]->precioporcentaje;
-				$option = "<option VALUE='-1'>Seleccionar porcentaje</OPTION>";
-				if($porcentaje == 1)
-				{
-					$precios=$this->ventas_model->select_porcentajeprecionproducto_id($id_pro);
-					
-					foreach ($precios as $fila) 
-					{
-						$option.="<option value = '".$fila->id."'> % ".$fila->porcentaje." - Precio ".$fila->precio_porcentaje."</option>";		
-					}								
-				}
-				$datos ='[{
-					     "id":"'.$filas[0]->id.'",
-						 "codad_empresa":"'.$filas[0]->codad_empresa.'",
-						 "idve_linea":"'.$filas[0]->idve_linea.'",
-						 "valor1":"'.$filas[0]->valor1.'",
-						 "valor2":"'.$filas[0]->valor2.'",
-						 "composicion":"'.$filas[0]->composicion.'",
-						 "presentacion":"'.$filas[0]->presentacion.'",
-						 "unidad":"'.$filas[0]->unidad.'",
-						 "sabor":"'.$filas[0]->sabor.'",
-						 "vencimiento":"'.$filas[0]->vencimiento.'",
-						 "valoracion":"'.$filas[0]->valoracion.'",
-						 "precioporcentaje":"'.$filas[0]->precioporcentaje.'",
-						 "estado":"'.$filas[0]->estado.'",
-						 "idve_producto":"'.$filas[0]->idve_producto.'",
-						 "saldo":"'.$filas[0]->saldo.'",
-						 "compra":"'.$filas[0]->compra.'",
-						 "venta":"'.$filas[0]->venta.'",
-						 "opcionprecios":"'.$option.'"}]';
-				 echo $datos;
-			}
-			else
-			{
-				echo 2;
-			}	
-    	}	
+				$option.="<option value = '".$fila->id."'> % ".$fila->porcentaje." - Precio ".$fila->precio_porcentaje."</option>";		
+			}								
+		}
+		$datos ='[{
+			     "id":"'.$filas[0]->id.'",
+				 "codad_empresa":"'.$filas[0]->codad_empresa.'",
+				 "idve_linea":"'.$filas[0]->idve_linea.'",
+				 "valor1":"'.$filas[0]->valor1.'",
+				 "valor2":"'.$filas[0]->valor2.'",
+				 "composicion":"'.$filas[0]->composicion.'",
+				 "presentacion":"'.$filas[0]->presentacion.'",
+				 "unidad":"'.$filas[0]->unidad.'",
+				 "sabor":"'.$filas[0]->sabor.'",
+				 "vencimiento":"'.$filas[0]->vencimiento.'",
+				 "valoracion":"'.$filas[0]->valoracion.'",
+				 "precioporcentaje":"'.$filas[0]->precioporcentaje.'",
+				 "estado":"'.$filas[0]->estado.'",
+				 "idve_producto":"'.$filas[0]->idve_producto.'",
+				 "saldo":"'.$filas[0]->saldo.'",
+				 "compra":"'.$filas[0]->compra.'",
+				 "venta":"'.$filas[0]->venta.'",
+				 "opcionprecios":"'.$option.'"}]';
+		 echo $datos;
 	}
 	function porcentajeid()
 	{

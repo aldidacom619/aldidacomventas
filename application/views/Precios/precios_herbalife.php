@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo  base_url() ?>jsd/ventas.js"></script>
+<script type="text/javascript" src="<?php echo  base_url() ?>jsd/precios.js"></script>
 <div id="page-wrapper">
 <!-- /#INICIA CUERPO -->
 
@@ -7,24 +7,7 @@
             <h1 class="page-header">Venta Productos</h1>
         </div>
                 <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Productos seleccionados
-                </div>
-                <div class="panel-body">
-                   <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="tablaproductos">
-                           
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
+    </div>    
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
@@ -53,7 +36,7 @@
                                 <? $n = 1?>
                                 <? foreach($totales as $fila):?>
                                 <tr>
-                                    <td ><button onclick='formactualizar(<?= $fila->idve_producto?>)' class="glyphicon glyphicon-shopping-cart"><?= " ".$n++?></button></td> 
+                                    <td ><button onclick='formactualizar(<?= $fila->idve_producto?>)' class="fa fa-money"><?= " ".$n++?></button></td> 
                                     
                                     <td ><?= $fila->valor2."<br>".$fila->valor1?></td>
                                      <td style="text-align: right;"><?= $fila->venta?></td>
@@ -123,19 +106,19 @@
                         </SELECT>                             
                     </div>                    
                     <div class="form-group">
-                        <label>Precio Venta Unitario</label>
+                        <label>Precio Unitario Actual</label>
                         <input class="form-control" id="venta" name="venta" required="required">
                     </div>                       
                 </div>
                 <div class="col-lg-6">            
                     <div class="form-group">
-                        <label>Cantidad</label>
+                        <label>Nuevo Precio </label>
                         <input class="form-control" id="cantidad" name="cantidad" required="required">
                     </div>                     
                 </div>                
             </div>
         </form>
-        <div class="modal-footer">
+       <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
             <button id="btnGuardaractualizacion" type="button" class="btn btn-primary" onclick='Guardarventa()'><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</button>
         </div>
@@ -154,4 +137,3 @@
       accionesformulario();    
       });
 </script>
-   

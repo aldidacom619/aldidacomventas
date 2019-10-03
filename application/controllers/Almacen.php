@@ -31,11 +31,9 @@ class Almacen extends CI_Controller
 			$dato['usuario'] = $this->session->userdata('usuario');
 			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);		
-			$metodo1 = selec_configuracion($empresa,"MODELO TOTALES");
-			$metodo2 = selec_configuracion($empresa,"MODELO PRODUCTOS A SELECCIONAR");
+			$metodo1 = selec_configuracion($empresa,"MODELO TOTALES");			
 			$vista   = selec_configuracion($empresa,"VISTA ACTUALIZAR ALMACEN");			
-			$dato['totales'] = $this->almacen_model->$metodo1($empresa);
-			$dato['prodvirtuales'] =$this->almacen_model->$metodo2($empresa,$id_usu);
+			$dato['totales'] = $this->almacen_model->$metodo1($empresa);			
 			$this->load->view("Inicio/cabecera");				
 			$this->load->view("Inicio/menu",$dato);		
 			$this->load->view("Almacen/".$vista,$dato);		

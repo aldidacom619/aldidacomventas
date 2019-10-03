@@ -9,12 +9,24 @@ class Ventas_model extends CI_Model
 	{
 		parent::__construct();		
 	} 
-	function almacen_totales($empresa)
+	function almacen_totales_herbalife($empresa)
 	{
 		$query = $this->db->query("select *
 									  from ve_productos p, 
 									       ve_totales t
 									 where p.id = t.idve_producto
+									   and p.estado = 'AC'
+									   and p.codad_empresa=".$empresa);	
+        return $query->result();
+	}
+	function almacen_totales_farmacia($empresa)
+	{
+		$query = $this->db->query("select *
+									  from ve_productos p, 
+									       ve_totales t,
+									       ve_linea_producto l
+									 where p.id = t.idve_producto
+									   and p.idve_linea = l.id									 
 									   and p.estado = 'AC'
 									   and p.codad_empresa=".$empresa);	
         return $query->result();
@@ -50,6 +62,7 @@ class Ventas_model extends CI_Model
 									  from ve_productos p, 
 									       ve_totales t
 									 where p.id = t.idve_producto
+									   and p.estado = 'AC'
 									   and p.id=".$idve_producto);	
         return $query->result();
 	} 
@@ -98,40 +111,32 @@ class Ventas_model extends CI_Model
 		$this->db->insert('ve_acumulador_venta',$data);
 		return $this->db->insert_id();
 	}
-	function listaproductoselecionado($empresa,$idad_usuario)
+	function listaproductoselecionado_herbalife($empresa,$idad_usuario)
 	{
 		$query = $this->db->query("select *,a.id as id_vir
 									  from ve_productos p, 
 									       ve_acumulador_venta a
 									 where p.id = a.idve_producto
+									   and p.estado = 'AC'
 									   and a.codad_empresa =".$empresa."
 									   and a.idad_usuario = ".$idad_usuario);	
 		return $query->result();
 	}
-	function listaproductoselecionado_dos($empresa,$idad_usuario)
+	function listaproductoselecionado_farmacia($empresa,$idad_usuario)
 	{
-		$query = $this->db->query("select *,a.id as id_vir
-									  from ve_productos p, 
-									       ve_acumulador_venta a
-									 where p.id = a.idve_producto
-									   and a.codad_empresa =".$empresa."
-									   and a.idad_usuario = ".$idad_usuario);	
-		return $query->result();
-	}
-	function listaproductoselecionado_valoracion($empresa,$idad_usuario)
-	{
-		$query = $this->db->query("select *,a.id as id_vir
+		$query = $this->db->query("select *,l.nombre_linea,a.id as id_vir
 									  from ve_productos p, 
 									       ve_acumulador_venta a,
-									       ve_valorizaciones v
+									       ve_linea_producto l
 									 where p.id = a.idve_producto
-									   and p.id = v.idve_producto
+									   and p.estado = 'AC'
+									   and p.idve_linea = l.id
 									   and a.codad_empresa =".$empresa."
 									   and a.idad_usuario = ".$idad_usuario);	
 		return $query->result();
 	}
-
-
+	
+	
 	function eliminproductoacumulador($id)
 	{
 		$this->db->delete('ve_acumulador_venta',array('id' => $id));

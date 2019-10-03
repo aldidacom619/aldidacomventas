@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-09-2019 a las 17:51:08
+-- Tiempo de generación: 03-10-2019 a las 02:29:45
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `ad_configuraciones_empresas` (
   `fecha` date NOT NULL,
   `fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Volcado de datos para la tabla `ad_configuraciones_empresas`
@@ -107,7 +107,17 @@ INSERT INTO `ad_configuraciones_empresas` (`id`, `codad_empresa`, `concepto`, `v
 (11, 2, 'VISTA DETALLE ALMACEN', 'detalle_almacen_valoracion', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
 (12, 3, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
 (13, 2, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
-(14, 3, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00');
+(14, 3, 'VISTA DETALLE ALMACEN', 'detalle_almacen', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(15, 2, 'VISTA VENTA PRODUCTOS', 'venta_herbalife', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(16, 3, 'VISTA VENTA PRODUCTOS', 'venta_productos_farmacia', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(17, 2, 'MODELO VENTA PRODUCTOS TOTALES', 'almacen_totales_herbalife', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(18, 3, 'MODELO VENTA PRODUCTOS TOTALES', 'almacen_totales_farmacia', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(19, 2, 'MODELO VENTA ACUMULADOR PRODUCTOS VIRTUAL', 'listaproductoselecionado_herbalife', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(20, 3, 'MODELO VENTA ACUMULADOR PRODUCTOS VIRTUAL', 'listaproductoselecionado_farmacia', 'MODELO', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(21, 2, 'VISTA ACUMULADOR VENTA', 'lista_acumulador_datos', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(22, 3, 'VISTA ACUMULADOR VENTA', 'lista_acumulador_datos_farmacia', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(23, 2, 'VISTA PRECIOS PRODUCTO', 'precios_herbalife', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00'),
+(24, 3, 'VISTA PRECIOS PRODUCTO', 'precios_farmacia', 'VISTA', '', '', '', '2019-09-02', '2019-09-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -243,7 +253,7 @@ INSERT INTO `ad_opciones` (`codigo`, `codad_modulo`, `codad_opcion`, `opcion`, `
 (34, 21, 34, 'ALMACEN', '', '', 1, 0, 'AC'),
 (37, 17, 31, 'DETALLE PRODUCTO', '', '', 2, 1, 'AC'),
 (38, 17, 31, 'REGISTRAR PRODUCTO', '', '', 2, 2, 'AC'),
-(39, 17, 31, 'CAMBIAR PRECIO', '', '', 2, 3, 'AC'),
+(39, 17, 31, 'CAMBIAR PRECIO', '', 'Precios', 2, 3, 'AC'),
 (40, 17, 31, 'VALORIZACION PRODUCT', '', '', 2, 4, 'AC'),
 (41, 17, 31, 'MODIFICAR PRODUCTO', '', '', 2, 5, 'AC'),
 (42, 17, 31, 'BAJA PRODUCTO', '', '', 2, 6, 'AC'),
@@ -425,7 +435,14 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_venta` (
   `precio_venta` float NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+
+--
+-- Volcado de datos para la tabla `ve_acumulador_venta`
+--
+
+INSERT INTO `ve_acumulador_venta` (`id`, `codad_empresa`, `idad_usuario`, `idve_producto`, `porcentaje`, `idve_porcentaje`, `cantidad`, `precio_compra`, `precio_venta`, `estado`) VALUES
+(37, 3, 13, 19, 0, 0, 1, 2.5, 3.7, 'AC');
 
 -- --------------------------------------------------------
 

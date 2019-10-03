@@ -50,6 +50,7 @@ class Almacen_model extends CI_Model
 									  from ve_productos p, 
 									       ve_totales t
 									 where p.id = t.idve_producto
+									   and p.estado = 'AC'
 									   and p.id=".$idve_producto);	
         return $query->result();
 	} 
@@ -99,6 +100,7 @@ class Almacen_model extends CI_Model
 									  from ve_productos p, 
 									       ve_acumulador_almacen a
 									 where p.id = a.idve_producto
+									   and p.estado = 'AC'
 									   and a.codad_empresa =".$empresa."
 									   and a.idad_usuario = ".$idad_usuario);	
 		return $query->result();
@@ -111,6 +113,7 @@ class Almacen_model extends CI_Model
 									       ve_valorizaciones v
 									 where p.id = a.idve_producto
 									   and p.id = v.idve_producto
+									   and p.estado = 'AC'
 									   and a.codad_empresa =".$empresa."
 									   and a.idad_usuario = ".$idad_usuario);	
 		return $query->result();
@@ -177,6 +180,7 @@ class Almacen_model extends CI_Model
 									       ve_almacenes a
 									 where p.id = a.idve_producto
 									   and p.id = v.idve_producto
+									   and p.estado = 'AC'
 									   and p.codad_empresa = ".$empresa."
 									   order by a.id asc");	
         return $query->result();
@@ -187,6 +191,7 @@ class Almacen_model extends CI_Model
 									  from ve_productos p,
 									       ve_almacenes a
 									 where p.id = a.idve_producto
+									   and p.estado = 'AC'
 									   and p.codad_empresa =".$empresa."
 									 order by a.id asc");	
         return $query->result();

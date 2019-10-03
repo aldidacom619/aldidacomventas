@@ -37,14 +37,16 @@
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Producto</th>
-                                    <th>Precio Venta</th>                                            
-                                    <th>Cantidad en Almacen</th> 
-                                    <th>Composicion</th>
+                                    <th># Opccion</th>
+                                    <th>Comercial</th>
+                                    <th>Generico</th>
+                                   
+                                    <th>Concentracion</th>
                                     <th>Presentacion</th>
-                                    <th>Unidad</th>
-                                    <th>Sabor</th>                                  
+                                    <th>Linea</th>
+                                    
+                                     <th>Precio Venta</th>                                            
+                                    <th>Cantidad en Almacen</th>                                
                                                                        
                                 </tr>
                             </thead>
@@ -54,13 +56,14 @@
                                 <tr>
                                     <td ><button onclick='formactualizar(<?= $fila->idve_producto?>)' class="glyphicon glyphicon-shopping-cart"><?= " ".$n++?></button></td> 
                                     
-                                    <td ><?= $fila->valor2."<br>".$fila->valor1?></td>
-                                     <td style="text-align: right;"><?= $fila->venta?></td>
-                                    <td style="text-align: right;"><?= $fila->saldo?></td>
+                                    <td ><?= $fila->valor2?></td>
+                                    <td ><?= $fila->valor1?></td>
+                                  
                                     <td ><?= $fila->composicion?></td>
                                     <td ><?= $fila->presentacion?></td>
-                                    <td ><?= $fila->unidad?></td>
-                                    <td ><?= $fila->sabor?></td>          
+                                    <td ><?= $fila->nombre_linea?></td>                                    
+                                       <td style="text-align: right;"><?= $fila->venta?></td>
+                                    <td style="text-align: right;"><?= $fila->saldo?></td>      
                                 </tr>                                    
                                 <?endforeach?>                                      
                             </tbody>
