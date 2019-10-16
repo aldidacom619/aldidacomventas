@@ -84,13 +84,14 @@ function formactualizar(idproducto)
             {
             	if(data == 1)
             	{
-            		alert('EL PRODUCTO YA FUE SELECCIONADO');
+            		//alert('EL PRODUCTO YA FUE SELECCIONADO');
+                    swal('EL PRODUCTO YA FUE SELECCIONADO')                     
             	}
             	else
             	{
             		if(data == 2)
                     {
-                        alert('CANTIDAD INSUFICIENTE EN ALMACEN');
+                        swal('CANTIDAD INSUFICIENTE EN ALMACEN');
                     }   
                     else
                     {
@@ -153,7 +154,13 @@ function Guardarventa()
                 $('#venta').val('');
                 $('#cantidad').val('');
                 $('#fechaven').val('');
-                alert('SE REGISTRO CORRECTAMENTE');
+                //alert('SE REGISTRO CORRECTAMENTE');
+                swal({
+                        title:'Buen trabajo',
+                        text:'Post Guardado!!',
+                        icon:'success',
+                        button:'Ok!'
+                    })
                 $('#actualizarcantidad').modal('hide');
             }
         });
