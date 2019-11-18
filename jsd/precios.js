@@ -41,6 +41,24 @@ function accionesformulario()
             $('#venta').val('');                  
          }         
     });
+    $('#porcentaje').change(function () 
+    {
+      var porcentaje = $('#porcentaje').val();
+      var enlace = base_url + "precios/porcentajeid";
+        $.ajax({
+            type: "GET",
+            url: enlace,
+             data: {id:porcentaje},
+            success: function(data) 
+            {
+                var result = JSON.parse(data);
+                    $.each(result, function(i, datos){
+                        $('#venta').val(datos.preciocompra);
+                       
+                    });                    
+            }
+        });
+    });
     
 }
 function formactualizar(idproducto)
@@ -59,51 +77,47 @@ function formactualizar(idproducto)
                     alert('EL PRODUCTO YA FUE SELECCIONADO');
                 }
                 else
-                {
-                    if(data == 2)
-                    {
-                        alert('CANTIDAD INSUFICIENTE EN ALMACEN');
-                    }   
-                    else
-                    {
-                        var result = JSON.parse(data);
-                        $.each(result, function(i, datos){
-                            $('#id_prod').val(datos.idve_producto);
-                            $('#tieneporcentaje').val(datos.precioporcentaje);
-                            $('#vencimiento').val(datos.vencimiento);
-                            $('#generico').val(datos.valor1);
-                            $('#comercial').val(datos.valor2);
-                            $('#concentracion').val(datos.composicion);
-                            $('#presentacion').val(datos.presentacion);
-                            $('#linea2').val(datos.sabor);
-                            $('#almacen').val(datos.saldo);
-                            $('#porcentaje').html(datos.opcionprecios);
-                            if(datos.precioporcentaje == 1)
-                            { 
-                                $('#idprocentajeselect').show();
-                                $('#compra').attr('readonly', true);
-                                $('#venta').attr('readonly', true);
-                            }
-                            else
-                            {
-                                $('#idprocentajeselect').hide();
-                                $('#compra').attr('readonly', false);
-                                $('#venta').attr('readonly', true);
-                                $('#venta').val(datos.venta);
-                            } 
-                            if(datos.vencimiento == 1)
-                            { 
-                                $('#idvencimientoselect').show();
-                                $('#fechaven').attr('readonly', false);                            
-                            }
-                            else
-                            {
-                                $('#idvencimientoselect').hide();
-                                $('#fechaven').attr('readonly', true);
-                            }                     
-                        });
-                        $('#actualizarcantidad').modal('show'); 
-                    }
+                {                    
+                    var result = JSON.parse(data);
+                    $.each(result, function(i, datos){
+                        $('#id_prod').val(datos.idve_producto);
+                        $('#tieneporcentaje').val(datos.precioporcentaje);
+                        $('#vencimiento').val(datos.vencimiento);
+                        $('#generico').val(datos.valor1);
+                        $('#comercial').val(datos.valor2);
+                        $('#concentracion').val(datos.composicion);
+                        $('#presentacion').val(datos.presentacion);
+                        $('#linea2').val(datos.sabor);
+                        $('#almacen').val(datos.saldo);
+                        $('#tablaprecios').html(datos.opcionprecios);
+                        if(datos.precioporcentaje == 1)
+                        { 
+                            
+                            $('#compra').attr('readonly', true);
+                            $('#venta').attr('readonly', true);
+                        }
+                        else
+                        {
+                          
+                            $('#compra').attr('readonly', false);
+                            $('#venta').attr('readonly', true);
+                            $('#venta').val(datos.venta);
+                            $('#nuevo_precio').val(datos.venta);
+                            
+                        } 
+                        if(datos.vencimiento == 1)
+                        { 
+                            $('#idvencimientoselect').show();
+                            $('#fechaven').attr('readonly', false);                            
+                        }
+                        else
+                        {
+                            $('#idvencimientoselect').hide();
+                            $('#fechaven').attr('readonly', true);
+                        }                     
+                    });
+                    $('#actualizarcantidad').modal('show'); 
+                
                 }                       
             }
         });
@@ -112,7 +126,7 @@ function Guardarventa()
 {
     if(validarFormulario())
     {
-        var enlace = base_url + "ventas/guardarproductosacumulador";
+        var enlace = base_url + "precios/guardaractualizacion";
         var datos = $('#formularioventaproducto').serialize();
         $.ajax({
             type: "GET",
@@ -120,13 +134,13 @@ function Guardarventa()
             data: datos,
             success: function(data)  
             {
-                //alert(data);
-                $('#tablaproductos').html(data);          
+                alert(data);
+                /*$('#tablaproductos').html(data);          
                 $('#venta').val('');
                 $('#cantidad').val('');
                 $('#fechaven').val('');
                 alert('SE REGISTRO CORRECTAMENTE');
-                $('#actualizarcantidad').modal('hide');
+                $('#actualizarcantidad').modal('hide');*/
             }
         });
     }
@@ -167,34 +181,7 @@ function validarFormulario(){
         }*/
     return todook;
 }
-function eliminar(idvir)
-{
-    var linea = $('#linea').val();
-    var enlace = base_url + "ventas/eliminarproductoacumulador";
-        $.ajax({
-            type: "GET",
-            url: enlace,
-             data: {id:idvir},
-            success: function(data) 
-            {   
-                alert('El producto se elimino correctamente');
-                $('#tablaproductos').html(data);
-            }
-    });
-}
-function cancelaractualizacion()
-{
-   var enlace = base_url + "ventas/cancelaractualizacion";
-        $.ajax({
-            type: "GET",
-            url: enlace,            
-            success: function(data) 
-            {
-                alert('Se cancelo la actualización');
-                $('#tablaproductos').html(data);
-            }
-    });
-}
+
 function realizaractualizacion()
 {
     if(confirm('¿Estas seguro de registrar el ingreso en almacen?'))

@@ -99,28 +99,25 @@
             <div class="row">
                 <br>
                 <legend>Datos de Venta</legend>
-                <div class="col-lg-6">
-                    <div class="form-group" id = "idprocentajeselect">
-                        <label>Porcentaje Venta</label>
-                        <SELECT NAME="porcentaje" id = "porcentaje" class="form-control">
-                        </SELECT>                             
-                    </div>                    
-                    <div class="form-group">
-                        <label>Precio Unitario Actual</label>
-                        <input class="form-control" id="venta" name="venta" required="required">
-                    </div>                       
-                </div>
-                <div class="col-lg-6">            
-                    <div class="form-group">
-                        <label>Nuevo Precio </label>
-                        <input class="form-control" id="cantidad" name="cantidad" required="required">
-                    </div>                     
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Productos seleccionados
+                        </div>
+                        <div class="panel-body">
+                           <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="tablaprecios">
+                                   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>                
             </div>
         </form>
        <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
-            <button id="btnGuardaractualizacion" type="button" class="btn btn-primary" onclick='Guardarventa()'><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</button>
+            <button id="btnGuardaractualizacion" type="button" class="btn btn-primary" onclick='Guardarventa()'><span class="glyphicon glyphicon-floppy-disk"></span>Actualizar</button>
         </div>
     </div>
             </div>

@@ -1,5 +1,5 @@
 var base_url;
-var alertaValidacion = '';
+var swalaValidacion = '';
 var validarci = false;
 function baseurl(enlace)
 { 
@@ -84,7 +84,7 @@ function formactualizar(idproducto)
             {
             	if(data == 1)
             	{
-            		//alert('EL PRODUCTO YA FUE SELECCIONADO');
+            		//swal('EL PRODUCTO YA FUE SELECCIONADO');
                     swal('EL PRODUCTO YA FUE SELECCIONADO')                     
             	}
             	else
@@ -149,12 +149,12 @@ function Guardarventa()
             data: datos,
             success: function(data)  
             {
-                //alert(data);
+                //swal(data);
                 $('#tablaproductos').html(data);          
                 $('#venta').val('');
                 $('#cantidad').val('');
                 $('#fechaven').val('');
-                //alert('SE REGISTRO CORRECTAMENTE');
+                //swal('SE REGISTRO CORRECTAMENTE');
                 swal({
                         title:'Buen trabajo',
                         text:'Post Guardado!!',
@@ -167,38 +167,38 @@ function Guardarventa()
     }
     else
     {
-       alert("Las opcciones de validación: "+alertaValidacion+"son necesarios");
-       alertaValidacion="";
+       swal("Las opcciones de validación: "+swalaValidacion+"son necesarios");
+       swalaValidacion="";
     }
 }   
 
 function validarFormulario(){
     var todook = true;
-    alertaValidacion = '';     
+    swalaValidacion = '';     
     /*  
         if($('#preciolistas').val()==''){
             todook = false;
-            alertaValidacion += "Precio Listas \n ";
+            swalaValidacion += "Precio Listas \n ";
         }
         if($('#descuento').val()==''){
             todook = false;
-            alertaValidacion += "Descuento \n ";
+            swalaValidacion += "Descuento \n ";
         }
         if($('#compra').val()==''){
             todook = false;
-            alertaValidacion += "Precio Compra \n ";
+            swalaValidacion += "Precio Compra \n ";
         }
         if($('#venta').val()==''){
             todook = false;
-            alertaValidacion += "Precio Venta \n ";
+            swalaValidacion += "Precio Venta \n ";
         }
         if($('#cantidad').val()==''){
             todook = false;
-            alertaValidacion += "Cantidad \n ";
+            swalaValidacion += "Cantidad \n ";
         }
         if($('#fecha').val()==''){
             todook = false;
-            alertaValidacion += "Fecha de Vencimiento \n ";
+            swalaValidacion += "Fecha de Vencimiento \n ";
         }*/
     return todook;
 }
@@ -212,7 +212,7 @@ function eliminar(idvir)
              data: {id:idvir},
             success: function(data) 
             {   
-                alert('El producto se elimino correctamente');
+                swal('El producto se elimino correctamente');
                 $('#tablaproductos').html(data);
             }
     });
@@ -225,7 +225,7 @@ function cancelaractualizacion()
             url: enlace,            
             success: function(data) 
             {
-                alert('Se cancelo la actualización');
+                swal('Se cancelo la actualización');
                 $('#tablaproductos').html(data);
             }
     });
@@ -240,7 +240,7 @@ function realizaractualizacion()
                 url: enlace,                 
                 success: function(data) 
                 {
-                    alert(data);
+                    swal(data);
                     window.setTimeout('location.reload()', 500);
                 }
         });

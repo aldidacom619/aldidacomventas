@@ -100,11 +100,7 @@
                 <br>
                 <legend>Datos de Venta</legend>
                 <div class="col-lg-6">
-                    <div class="form-group" id = "idprocentajeselect">
-                        <label>Porcentaje Venta</label>
-                        <SELECT NAME="porcentaje" id = "porcentaje" class="form-control">
-                        </SELECT>                             
-                    </div>                    
+                                      
                     <div class="form-group">
                         <label>Precio Unitario Actual</label>
                         <input class="form-control" id="venta" name="venta" required="required">
@@ -113,7 +109,7 @@
                 <div class="col-lg-6">            
                     <div class="form-group">
                         <label>Nuevo Precio </label>
-                        <input class="form-control" id="cantidad" name="cantidad" required="required">
+                        <input class="form-control" id="nuevo_precio" name="nuevo_precio" required="required">
                     </div>                     
                 </div>                
             </div>
