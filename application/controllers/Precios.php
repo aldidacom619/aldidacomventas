@@ -8,7 +8,8 @@ class Precios extends CI_Controller
 		$this->load->helper('menu_helper');
 		$this->load->helper('configuraciones_helper');	
 		$this->load->model('roles_model');
-		$this->load->model('ventas_model');		
+		$this->load->model('ventas_model');				
+		$this->load->model('precios_model');
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');		
 		$this->load->helper('date');
@@ -85,46 +86,81 @@ class Precios extends CI_Controller
 				 "opcionprecios":"'.$option.'"}]';
 		 echo $datos;
 	}
-	function porcentajeid()
-	{
-		$porcentaje = $this->input->get('id');
-		$filas = $this->ventas_model->porcentajeid($porcentaje);
-		$preciomaximo = $this->ventas_model->preciomaximoproducto($filas[0]->idve_producto);
-		$datos ='[{
-				     "preciocompra":"'.$filas[0]->precio_porcentaje.'",
-					 "precioventa":"'.$preciomaximo[0]->maximo.'"}]';
-		echo $datos;		
-	}
 	function guardaractualizacion()
 	{
+		$id_usu = $this->session->userdata('id');
+		$fecha_hora = fecha_hora();
 		$id_prod = $this->input->get('id_prod');
 		//$id_prod = 5;
 		$porcentaje = $this->input->get('tieneporcentaje');
-		//$porcentaje = 2;
+		$mensaje = "";
 		$nuevo_precio = 0;
 		if($porcentaje != 1)
 		{
+			$mensaje2 = "";
+			$mensaje1 = "";
+			$precios = $this->ventas_model->select_totales_id($id_prod);
+			$precios_anterior = $precios[0]->venta;
 			$nuevo_precio = $this->input->get('nuevo_precio');
-
+			if($precios_anterior != $nuevo_precio)
+			{
+			   //$actualizar_total = $this->precios_model->modificar_precios_totales($id_prod,$nuevo_precio);
+			   //$actualizar_precios = $this->precios_model->registrar_precios_actualizados($id_usu,$id_prod,'',$precios_anterior ,$nuevo_precio,$fecha_hora,'AC');	
+			   $resultado = 0;
+			   $mensaje1 = "SE ACTUALIZO EL PRECIO DE:".$precios_anterior." A ".$nuevo_precio;
+			}
+			else
+			{
+				$resultado = 1;
+				$mensaje2 = "NO SE ACTULIZO NINGUN VALOR";
+			}			
 		}
 		else
 		{
-			$precios=$this->ventas_model->select_porcentajeprecionproducto_id($id_prod);
-			
+			$precios=$this->ventas_model->select_porcentajeprecionproducto_id($id_prod);		
+			$mensaje1 = "SE ACTUALIZO EL PRECIO DE LOS PORCENTAJES DE: ";
+			$mensaje2 = "NO SE ACTUALIZO EL PRECIO DE LOS PORCENTAJES DE";		
+			$con1 = 0;	
+			$con2 = 0;
 			foreach ($precios as $fila) 
-			{
-			
-				$nuevo_precio = $nuevo_precio." - ".$this->input->get($fila->id);
-			}		
-			
+			{	
+				$precios_anterior = $fila->precio_porcentaje;		
+				$nuevo_precio = $this->input->get($fila->id);
+				if($precios_anterior != $nuevo_precio)
+				{
+				   if($fila->porcentaje == 100)
+				   {
+				   	 $actualizar_total = $this->precios_model->modificar_precios_totales($id_prod,$nuevo_precio);	
+				   }
+				   $actualizar_total2 = $this->precios_model->modificar_precios_porcentaje($fila->id,$nuevo_precio);
+				   $actualizar_precios = $this->precios_model->registrar_precios_actualizados($id_usu,$id_prod,$fila->id,$precios_anterior ,$nuevo_precio,$fecha_hora,'AC');	
+				   $mensaje1 = $mensaje1." ".$fila->porcentaje."% ";
+				   $con1++;
+				}
+				else
+				{					
+					$mensaje2 = $mensaje2." ".$fila->porcentaje."% ";
+					$con2++;	
+				}								
+			}
+			if($con1!=0 && $con2!=0)
+			{ $resultado = 0;}
+			elseif($con1!=0 && $con2==0)
+			{ 
+				 $resultado = 0;
+				 $mensaje2 = "";
+			}
+			elseif($con2!=0 && $con1==0)
+			{ 
+				 $resultado = 1;
+				 $mensaje1 = "";
+			}
 		}
-		echo $nuevo_precio;
-
-
-		
-		
-		
-	}
-	
+		$resultado ='[{
+				     "resultado":"'.$resultado.'",
+					 "mensaje":"'.$mensaje1.'",
+					 "mensaje2":"'.$mensaje2.'"}]';
+		echo $resultado;
+	}	
 }	
 ?>

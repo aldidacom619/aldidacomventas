@@ -181,7 +181,7 @@ class Almacen extends CI_Controller
 				$total = $this->almacen_model->seleccionar_totales($id_prod);
 				$saldo = $total[0]->saldo;
 				$suma = ($saldo + $entrada);
-				$modificar = $this->almacen_model->modificar_totales($id_prod,$suma,$precio_compra,$precio_venta);	
+				$modificar = $this->almacen_model->modificar_totales($id_prod,$suma,$precio_compra,$precio_venta);					
 				$con ++;			
              }
 		}

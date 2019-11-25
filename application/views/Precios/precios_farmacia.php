@@ -98,7 +98,7 @@
             <input type="hidden" class="form-control" id="vencimiento" name="vencimiento" required="required">
             <div class="row">
                 <br>
-                <legend>Datos de Venta</legend>
+                <legend>Precio</legend>
                 <div class="col-lg-6">
                                       
                     <div class="form-group">

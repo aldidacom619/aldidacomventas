@@ -9,57 +9,38 @@ class Precios_model extends CI_Model
 	{
 		parent::__construct();		
 	} 
-	function almacen_totales_herbalife($empresa)
+	function modificar_precios_totales($id_prod,$venta) 
 	{
-		$query = $this->db->query("select *
-									  from ve_productos p, 
-									       ve_totales t
-									 where p.id = t.idve_producto
-									   and p.estado = 'AC'
-									   and p.codad_empresa=".$empresa);	
-        return $query->result();
+		$data = array(						
+			'venta' => $venta
+		 );
+		$this->db->where('idve_producto',$id_prod);
+		return  $this->db->update('ve_totales',$data);
 	}
-	function almacen_totales_farmacia($empresa)
+	function modificar_precios_porcentaje($id_prod,$venta) 
 	{
-		$query = $this->db->query("select *
-									  from ve_productos p, 
-									       ve_totales t,
-									       ve_linea_producto l
-									 where p.id = t.idve_producto
-									   and p.idve_linea = l.id									 
-									   and p.estado = 'AC'
-									   and p.codad_empresa=".$empresa);	
-        return $query->result();
+		$data = array(						
+			'precio_porcentaje' => $venta
+		 );
+		$this->db->where('id',$id_prod);
+		return  $this->db->update('ve_precios_porcentajes',$data);
 	}
-	function verproductoselecionado($empresa,$idad_usuario,$idve_producto)
+	function registrar_precios_actualizados($id_user,$id_pro,$id_pro_precio,$anterior,$actual,$fecha,$estado)
 	{
-		$this->db->where('codad_empresa',$empresa);
-		$this->db->where('idve_producto',$idve_producto);
-		$this->db->where('idad_usuario',$idad_usuario);
-		$query = $this->db->get('ve_acumulador_venta'); 
-		if($query->num_rows()>0){
-			return false;
-		}
-		else{
-			return true;
-		}
+		$data = array(			
+			'idad_usuario' => $id_user,
+			'idve_producto' => $id_pro,
+			'idve_precio_porcentaje' => $id_pro_precio,
+			'valor_anterior' => $anterior,
+			'valor_actual' => $actual,
+			'fecha_actualizacion' => $fecha,
+			'estado' =>$estado,
+		 );
+		$this->db->insert('ve_precios_actualizados',$data);
+		return $this->db->insert_id();
 	}
-	function select_almacen_totales_id_dos($idve_producto)
-	{
-		$query = $this->db->query("select *
-			 					     from ve_totales t 
-			 					    where t.idve_producto = ".$idve_producto );
-		return $query->result();
-	} 
+
 	
-	function select_porcentajeprecionproducto_id($idve_producto)
-	{
-		$query = $this->db->query("select *
-									  from ve_precios_porcentajes 
-									 where idve_producto = ".$idve_producto."
-									 order by porcentaje desc");	
-        return $query->result();
-	} 
 
 	
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-10-2019 a las 19:33:17
+-- Tiempo de generación: 25-11-2019 a las 00:29:19
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -407,15 +407,7 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_almacen` (
   `fecha_vencimiento` date NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
-
---
--- Volcado de datos para la tabla `ve_acumulador_almacen`
---
-
-INSERT INTO `ve_acumulador_almacen` (`id`, `codad_empresa`, `idad_usuario`, `idve_producto`, `porcentaje`, `idve_porcentaje`, `entrada`, `precio_compra`, `precio_venta`, `vencimiento`, `fecha_vencimiento`, `estado`) VALUES
-(40, 2, 11, 1, 1, 4, 2, 162, 300, 1, '2019-12-20', 'AC'),
-(41, 2, 11, 4, 1, 19, 15, 131.5, 250, 1, '2020-05-30', 'AC');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -471,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `ve_almacenes` (
   `estado` varchar(20) NOT NULL,
   `tipoingreso` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Volcado de datos para la tabla `ve_almacenes`
@@ -502,7 +494,8 @@ INSERT INTO `ve_almacenes` (`id`, `idad_usuario`, `idve_producto`, `idve_proveed
 (27, 11, 3, 0, 14, 2, 1, 1, 162, 300, 1, '2020-01-24', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
 (28, 13, 862, 0, 0, 3, 0, 3, 25, 32, 1, '2020-04-25', '2019-09-29', '0000-00-00 00:00:00', 0, 0, '', 'AC', 0),
 (29, 13, 49, 0, 0, 50, 0, 50, 5, 6.5, 1, '2020-03-14', '2019-09-29', '2019-09-29 20:02:44', 0, 0, '', 'AC', 0),
-(30, 11, 1, 0, 4, 1, 1, 0, 162, 300, 1, '2020-02-22', '2019-09-29', '2019-09-29 20:12:20', 0, 0, '', 'AC', 0);
+(30, 11, 1, 0, 4, 1, 1, 0, 162, 300, 1, '2020-02-22', '2019-09-29', '2019-09-29 20:12:20', 0, 0, '', 'AC', 0),
+(31, 11, 1, 0, 4, 5, 0, 5, 162, 300, 1, '2020-05-23', '2019-10-18', '2019-10-18 01:09:03', 0, 0, '', 'AC', 0);
 
 -- --------------------------------------------------------
 
@@ -533,6 +526,7 @@ CREATE TABLE IF NOT EXISTS `ve_clientes` (
   `nombres` varchar(100) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `direccion` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -624,6 +618,39 @@ INSERT INTO `ve_linea_producto` (`id`, `codad_empresa`, `nombre_linea`, `estado`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ve_precios_actualizados`
+--
+
+CREATE TABLE IF NOT EXISTS `ve_precios_actualizados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idad_usuario` int(11) NOT NULL,
+  `idve_producto` int(11) NOT NULL,
+  `idve_precio_porcentaje` int(11) NOT NULL,
+  `valor_anterior` float NOT NULL,
+  `valor_actual` float NOT NULL,
+  `fecha_actualizacion` datetime NOT NULL,
+  `estado` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Volcado de datos para la tabla `ve_precios_actualizados`
+--
+
+INSERT INTO `ve_precios_actualizados` (`id`, `idad_usuario`, `idve_producto`, `idve_precio_porcentaje`, `valor_anterior`, `valor_actual`, `fecha_actualizacion`, `estado`) VALUES
+(1, 0, 19, 0, 3.7, 5, '2019-11-18 14:15:10', 'AC'),
+(2, 13, 23, 0, 9.7, 9.7, '2019-11-18 14:18:08', 'AC'),
+(3, 11, 1, 5, 300, 310, '2019-11-19 22:19:19', 'AC'),
+(4, 11, 1, 3, 180, 150, '2019-11-19 22:25:57', 'AC'),
+(5, 11, 1, 5, 310, 312, '2019-11-19 22:26:35', 'AC'),
+(6, 11, 1, 4, 162, 170, '2019-11-19 22:26:35', 'AC'),
+(7, 11, 1, 3, 150, 165, '2019-11-19 22:26:35', 'AC'),
+(8, 11, 1, 2, 196, 200, '2019-11-19 22:26:35', 'AC'),
+(9, 11, 1, 1, 219, 250, '2019-11-19 22:26:35', 'AC');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ve_precios_porcentajes`
 --
 
@@ -642,11 +669,11 @@ CREATE TABLE IF NOT EXISTS `ve_precios_porcentajes` (
 --
 
 INSERT INTO `ve_precios_porcentajes` (`id`, `idve_producto`, `porcentaje`, `precio_porcentaje`, `fecha`, `estado`) VALUES
-(1, 1, 25, 219, '2019-09-12', 'AC'),
-(2, 1, 35, 196, '2019-09-12', 'AC'),
-(3, 1, 42, 180, '2019-09-12', 'AC'),
-(4, 1, 50, 162, '2019-09-12', 'AC'),
-(5, 1, 100, 300, '2019-09-12', 'AC'),
+(1, 1, 25, 250, '2019-09-12', 'AC'),
+(2, 1, 35, 200, '2019-09-12', 'AC'),
+(3, 1, 42, 165, '2019-09-12', 'AC'),
+(4, 1, 50, 170, '2019-09-12', 'AC'),
+(5, 1, 100, 312, '2019-09-12', 'AC'),
 (6, 2, 25, 284, '2019-09-12', 'AC'),
 (7, 2, 35, 256, '2019-09-12', 'AC'),
 (8, 2, 42, 235.5, '2019-09-12', 'AC'),
@@ -1659,6 +1686,7 @@ CREATE TABLE IF NOT EXISTS `ve_proveedores` (
   `nombre_proveedor` varchar(200) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `direccion` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -1684,7 +1712,7 @@ CREATE TABLE IF NOT EXISTS `ve_totales` (
 --
 
 INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `estado`) VALUES
-(1, 1, 0, 162, 300, 'ac'),
+(1, 1, 5, 162, 312, 'ac'),
 (2, 2, 0, 214.2, 400, 'AC'),
 (3, 3, 1, 162, 300, 'AC'),
 (4, 4, 0, 131.5, 250, 'AC'),
@@ -1702,11 +1730,11 @@ INSERT INTO `ve_totales` (`id`, `idve_producto`, `saldo`, `compra`, `venta`, `es
 (16, 16, 0, 0, 0, 'AC'),
 (17, 17, 0, 0, 0, 'AC'),
 (18, 18, 0, 0, 0, 'AC'),
-(19, 19, 9, 2.5, 3.7, 'AC'),
+(19, 19, 9, 2.5, 5, 'AC'),
 (20, 20, 0, 0, 0, 'AC'),
 (21, 21, 0, 0, 0, 'AC'),
 (22, 22, 0, 0, 0, 'AC'),
-(23, 23, 15, 6.25, 8.2, 'AC'),
+(23, 23, 15, 6.25, 9.7, 'AC'),
 (24, 24, 0, 0, 0, 'AC'),
 (25, 25, 0, 0, 0, 'AC'),
 (26, 26, 0, 0, 0, 'AC'),

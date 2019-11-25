@@ -151,7 +151,7 @@ function Guardarventa()
             {
                 //swal(data);
                 $('#tablaproductos').html(data);          
-                $('#venta').val('');
+                $('#venta').val(''); 
                 $('#cantidad').val('');
                 $('#fechaven').val('');
                 //swal('SE REGISTRO CORRECTAMENTE');

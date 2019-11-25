@@ -134,13 +134,27 @@ function Guardarventa()
             data: datos,
             success: function(data)  
             {
-                alert(data);
+                //alert(data);
+                var result = JSON.parse(data);
+                $.each(result, function(i, datos){
+                    if(datos.resultado == 1)
+                    {
+                        alert(datos.mensaje + "\n"+ datos.mensaje2);
+                    }
+                    else
+                    {
+                        alert(datos.mensaje + "\n"+ datos.mensaje2);
+                        
+                        window.setTimeout('location.reload()', 500);                        
+                    }
+                });
                 /*$('#tablaproductos').html(data);          
                 $('#venta').val('');
                 $('#cantidad').val('');
                 $('#fechaven').val('');
                 alert('SE REGISTRO CORRECTAMENTE');
                 $('#actualizarcantidad').modal('hide');*/
+                    
             }
         });
     }
