@@ -48,7 +48,7 @@ class Ventas extends CI_Controller
 	{
 		$id_usu = $this->session->userdata('id');
 		$empresa = $this->session->userdata('codad_empresa');
-		$id_pro = $this->input->get('id');
+		$id_pro = $this->input->post('id');
 		
 		if (!($this->ventas_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
 		{
@@ -101,42 +101,96 @@ class Ventas extends CI_Controller
 	}
 	function porcentajeid()
 	{
-		$porcentaje = $this->input->get('id');
-		$filas = $this->ventas_model->porcentajeid($porcentaje);
-		$preciomaximo = $this->ventas_model->preciomaximoproducto($filas[0]->idve_producto);
-		$datos ='[{
-				     "preciocompra":"'.$filas[0]->precio_porcentaje.'",
-					 "precioventa":"'.$preciomaximo[0]->maximo.'"}]';
-		echo $datos;		
+		$porcentaje = $this->input->post('id');
+		if($porcentaje > 0)
+		{	
+			$filas = $this->ventas_model->porcentajeid($porcentaje);
+			$preciomaximo = $this->ventas_model->preciomaximoproducto($filas[0]->idve_producto);
+			$datos ='[{
+					     "preciocompra":"'.$filas[0]->precio_porcentaje.'",
+						 "precioventa":"'.$preciomaximo[0]->maximo.'"}]';
+			echo $datos;		
+		}		
+		else
+		{
+			$datos ='[{
+					     "preciocompra":"",
+						 "precioventa":""}]';
+			echo $datos;
+		}
 	}
 	function guardarproductosacumulador()
 	{
 			
 		    $empresa = $this->session->userdata('codad_empresa');
 			$id_usu = $this->session->userdata('id');
-			$id_pro = $this->input->get('id_prod');
-			$tieneporcentaje = $this->input->get('tieneporcentaje');			
-			$porcentaje = $this->input->get('porcentaje');
-			$cantidad = $this->input->get('cantidad');
-			$venta = $this->input->get('venta');			
+			$id_pro = $this->input->post('id_prod');
+			$tieneporcentaje = $this->input->post('tieneporcentaje');			
+			$porcentaje = $this->input->post('porcentaje');
+			$cantidad = $this->input->post('cantidad');
+			$venta = $this->input->post('venta');			
 			$precios = $this->ventas_model->select_totales_id($id_pro);
 			$compra = $precios[0]->compra;
-			if($tieneporcentaje == 0)
-			{
-				$porcentaje = 0;
-			}			
-			if (($this->ventas_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
-			{
-				$insert = $this->ventas_model->registrarproductosacumulador($empresa,$id_usu,$id_pro,$tieneporcentaje,$porcentaje,$cantidad,$compra,$venta,"AC");
+			$saldo_producto = $this->ventas_model->select_almacen_totales_id_dos($id_pro);
+			$saldo_total = $saldo_producto[0]->saldo;
+			$datos = "";
+			$mensaje1 = "";
+			if(is_numeric($cantidad))
+			{	
+				if($cantidad <= $saldo_total)
+			    {
+					if($tieneporcentaje == 0)
+					{
+						$porcentaje = 0;
+					}			
+					if (($this->ventas_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
+					{
+						$insert = $this->ventas_model->registrarproductosacumulador($empresa,$id_usu,$id_pro,$tieneporcentaje,$porcentaje,$cantidad,$compra,$venta,"AC");
+					}
+					$acumulador = selec_configuracion($empresa,"VISTA ACUMULADOR VENTA");
+					$datos = $this->$acumulador($empresa,$id_usu);		
+					$resul = 1;
+				}
+				else
+				{
+					$resul = 2;
+					$mensaje1 = "Cantidad insuficiente en almacen";
+				}
 			}	
-			$acumulador = selec_configuracion($empresa,"VISTA ACUMULADOR VENTA");
-			echo $this->$acumulador($empresa,$id_usu);		
+			else
+			{
+				$resul = 2; 
+				$mensaje1 = "Valor de cantidad no es valida";
+			}
+			$datos = "";
+			$resultado ='[{
+				     "resultado":"'.$resul.'",
+					 "mensaje":"'.$mensaje1.'",
+					 "valor":"'.$datos.'"}]';
+			echo $resultado;
+			
+	}
+	function vercantidad()
+	{
+		$id_pro = $this->input->post('id');
+		$cantidad = $this->input->post('cant');
+		$saldo_producto = $this->ventas_model->select_almacen_totales_id_dos($id_pro);
+			$saldo_total = $saldo_producto[0]->saldo;
+			if($cantidad <= $saldo_total)
+			{
+				echo 2;		
+			}
+			else
+			{
+				echo 0;
+			}
+
 	}
 	function eliminarproductoacumulador()
 	{
 		$empresa = $this->session->userdata('codad_empresa');
 		$id_usu = $this->session->userdata('id');
-		$id_vir = $this->input->get('id');
+		$id_vir = $this->input->post('id');
 		$eliminar = $this->ventas_model->eliminproductoacumulador($id_vir);		
 		$acumulador = selec_configuracion($empresa,"VISTA ACUMULADOR VENTA");
 		echo $this->$acumulador($empresa,$id_usu);					
@@ -285,7 +339,7 @@ class Ventas extends CI_Controller
 					                    <td colspan="6"></td>
 					              </tr></tbody>';
 					}					
-		echo $retorno;
+		return $retorno;
 	}
 	function lista_acumulador_datos_farmacia($empresa,$id_usu)
 	{
@@ -334,7 +388,7 @@ class Ventas extends CI_Controller
 					                    <td colspan="6"></td>
 					              </tr></tbody>';
 					}					
-		echo $retorno;
+		return $retorno;
 	}
 }	
 ?>

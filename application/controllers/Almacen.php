@@ -123,11 +123,14 @@ class Almacen extends CI_Controller
 			if($vencimiento == 0)
 			{
 				$fechaven = '';
-			}						
-			if (($this->almacen_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
-			{
-				$insert = $this->almacen_model->registraractualizacionacumulador($empresa,$id_usu,$id_pro,$tieneporcentaje,$porcentaje,$cantidad,$compra,$venta,$vencimiento,$fechaven,"AC");
-			}	
+			}					
+			if(is_int($cantidad))
+			{	
+				if (($this->almacen_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
+				{
+					$insert = $this->almacen_model->registraractualizacionacumulador($empresa,$id_usu,$id_pro,$tieneporcentaje,$porcentaje,$cantidad,$compra,$venta,$vencimiento,$fechaven,"AC");
+				}	
+			}
 			$acumulador = selec_configuracion($empresa,"VISTA ACUMULADOR ALMACEN");
 			echo $this->$acumulador($empresa,$id_usu);					
 	}

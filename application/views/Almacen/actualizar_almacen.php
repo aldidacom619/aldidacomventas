@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <? $n = 1?>
+                                <? $n = 1?> 
                                 <? foreach($totales as $fila):?>
                                 <tr>
                                     <td ><?= $n++?></td> 
@@ -134,7 +134,7 @@
                     </div>
                     <div class="form-group">
                         <label>Cantidad</label>
-                        <input class="form-control" id="cantidad" name="cantidad" required="required">
+                        <input type="number" class="form-control" id="cantidad" name="cantidad" required="required">
                     </div>
                 </div>
                 <div class="col-lg-6">                    

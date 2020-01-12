@@ -1,6 +1,7 @@
 var base_url;
 var swalaValidacion = '';
 var validarci = false;
+var valor = ""; 
 function baseurl(enlace)
 { 
   base_url = enlace;  
@@ -57,7 +58,7 @@ function accionesformulario()
       var porcentaje = $('#porcentaje').val();
       var enlace = base_url + "ventas/porcentajeid";
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: enlace,
              data: {id:porcentaje},
             success: function(data) 
@@ -75,9 +76,11 @@ function formactualizar(idproducto)
 {
     $('#compra').val('');
     $('#venta').val('');
+    $('#mensajeerror').hide();
+    swalaValidacion="";
 	var enlace = base_url + "ventas/datosproducto";
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: enlace,
             data: {id:idproducto},
             success: function(data) 
@@ -144,62 +147,51 @@ function Guardarventa()
         var enlace = base_url + "ventas/guardarproductosacumulador";
         var datos = $('#formularioventaproducto').serialize();
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: enlace,
-            data: datos,
+            data: datos,            
             success: function(data)  
-            {
-                //swal(data);
-                $('#tablaproductos').html(data);          
-                $('#venta').val(''); 
-                $('#cantidad').val('');
-                $('#fechaven').val('');
-                //swal('SE REGISTRO CORRECTAMENTE');
-                swal({
-                        title:'Buen trabajo',
-                        text:'Post Guardado!!',
-                        icon:'success',
-                        button:'Ok!'
-                    })
-                $('#actualizarcantidad').modal('hide');
+            {              
+                var result = JSON.parse(data);
+                $.each(result, function(i, datos){
+                   alert(datos.resultado);               
+                    if(datos.resultado == 1)
+                    {
+                        $('#tablaproductos').html(datos.valor);          
+                        $('#venta').val(''); 
+                        $('#cantidad').val('');
+                        $('#fechaven').val('');
+                        swal('SE REGISTRO CORRECTAMENTE');                        
+                        $('#actualizarcantidad').modal('hide');
+                    }
+                    else
+                    {
+                        $('#mensajeerror').html(datos.mensaje);
+                        $('#mensajeerror').show();                      
+                    }
+                });             
             }
         });
+        
     }
     else
-    {
-       swal("Las opcciones de validación: "+swalaValidacion+"son necesarios");
+    {        
+       $('#mensajeerror').html(swalaValidacion);
+       $('#mensajeerror').show();
        swalaValidacion="";
     }
 }   
 
 function validarFormulario(){
-    var todook = true;
-    swalaValidacion = '';     
-    /*  
-        if($('#preciolistas').val()==''){
+    var todook = true;   
+       if($('#porcentaje').val()=='-1'){
             todook = false;
-            swalaValidacion += "Precio Listas \n ";
-        }
-        if($('#descuento').val()==''){
-            todook = false;
-            swalaValidacion += "Descuento \n ";
-        }
-        if($('#compra').val()==''){
-            todook = false;
-            swalaValidacion += "Precio Compra \n ";
-        }
-        if($('#venta').val()==''){
-            todook = false;
-            swalaValidacion += "Precio Venta \n ";
-        }
+            swalaValidacion += "* Seleccionar un porcentaje <br>";
+        }      
         if($('#cantidad').val()==''){
             todook = false;
-            swalaValidacion += "Cantidad \n ";
-        }
-        if($('#fecha').val()==''){
-            todook = false;
-            swalaValidacion += "Fecha de Vencimiento \n ";
-        }*/
+            swalaValidacion += "* Completar la cantidad <br>";
+        }    
     return todook;
 }
 function eliminar(idvir)
@@ -207,7 +199,7 @@ function eliminar(idvir)
     var linea = $('#linea').val();
     var enlace = base_url + "ventas/eliminarproductoacumulador";
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: enlace,
              data: {id:idvir},
             success: function(data) 
@@ -221,7 +213,7 @@ function cancelaractualizacion()
 {
    var enlace = base_url + "ventas/cancelaractualizacion";
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: enlace,            
             success: function(data) 
             {

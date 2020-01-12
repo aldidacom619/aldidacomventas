@@ -135,6 +135,8 @@
                 </div>                
             </div>
         </form>
+        <div class="alert alert-danger" role="alert" style="display: none;" id="mensajeerror">
+        </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
             <button id="btnGuardaractualizacion" type="button" class="btn btn-primary" onclick='Guardarventa()'><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</button>

@@ -9,7 +9,7 @@ function accionesformulario()
 {   
     $("#fechaven").datepicker({
     
-      format: "yyyy-mm-dd",
+      format: "yyyy-mm-dd", 
       orientation: "top left",
       language: "es" 
     });
@@ -129,7 +129,7 @@ function Guardarventa()
         var enlace = base_url + "precios/guardaractualizacion";
         var datos = $('#formularioventaproducto').serialize();
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: enlace,
             data: datos,
             success: function(data)  
@@ -139,11 +139,11 @@ function Guardarventa()
                 $.each(result, function(i, datos){
                     if(datos.resultado == 1)
                     {
-                        alert(datos.mensaje + "\n"+ datos.mensaje2);
+                        alert(datos.mensaje + "\n"+ datos.mensaje2+ "\n"+ datos.mensaje3);
                     }
                     else
                     {
-                        alert(datos.mensaje + "\n"+ datos.mensaje2);
+                        alert(datos.mensaje + "\n"+ datos.mensaje2+ "\n"+ datos.mensaje3);
                         
                         window.setTimeout('location.reload()', 500);                        
                     }

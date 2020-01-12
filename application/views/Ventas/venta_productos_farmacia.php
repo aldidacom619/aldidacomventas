@@ -132,7 +132,7 @@
                 <div class="col-lg-6">            
                     <div class="form-group">
                         <label>Cantidad</label>
-                        <input class="form-control" id="cantidad" name="cantidad" required="required">
+                        <input  type="number" class="form-control" id="cantidad" name="cantidad" required="required">
                     </div>                     
                 </div>                
             </div>

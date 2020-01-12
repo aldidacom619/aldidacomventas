@@ -33,7 +33,7 @@ function accionesformulario()
          }         
     });
     $('#venta').keyup(function () 
-    {
+    { 
          var tem = $('#venta').val(); 
          var RE = /^\d*\.?\d*$/;         
          if (!(RE.test(tem)))
@@ -83,7 +83,7 @@ function formactualizar(idproducto)
             success: function(data) 
             {
             	if(data == 1)
-            	{
+            	{ 
             		swal('EL PRODUCTO YA FUE SELECCIONADO');
             	}
             	else
