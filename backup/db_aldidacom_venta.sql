@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-12-2019 a las 17:03:18
+-- Tiempo de generación: 05-02-2020 a las 03:19:06
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -427,14 +427,7 @@ CREATE TABLE IF NOT EXISTS `ve_acumulador_venta` (
   `precio_venta` float NOT NULL,
   `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
-
---
--- Volcado de datos para la tabla `ve_acumulador_venta`
---
-
-INSERT INTO `ve_acumulador_venta` (`id`, `codad_empresa`, `idad_usuario`, `idve_producto`, `porcentaje`, `idve_porcentaje`, `cantidad`, `precio_compra`, `precio_venta`, `estado`) VALUES
-(37, 3, 13, 19, 0, 0, 1, 2.5, 3.7, 'AC');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -631,7 +624,7 @@ CREATE TABLE IF NOT EXISTS `ve_precios_actualizados` (
   `fecha_actualizacion` datetime NOT NULL,
   `estado` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Volcado de datos para la tabla `ve_precios_actualizados`
@@ -671,7 +664,13 @@ INSERT INTO `ve_precios_actualizados` (`id`, `idad_usuario`, `idve_producto`, `i
 (31, 11, 5, 24, 151.3, 156, '2019-12-04 13:28:30', 'AC'),
 (32, 11, 5, 23, 160, 164, '2019-12-04 13:28:30', 'AC'),
 (33, 11, 5, 22, 167, 172, '2019-12-04 13:28:30', 'AC'),
-(34, 11, 5, 21, 178, 183, '2019-12-04 13:28:30', 'AC');
+(34, 11, 5, 21, 178, 183, '2019-12-04 13:28:30', 'AC'),
+(35, 11, 3, 11, 225, 2, '2019-12-29 10:11:03', 'AC'),
+(36, 11, 3, 11, 2, 2.22225, '2019-12-29 10:13:46', 'AC'),
+(37, 11, 3, 11, 2.22225, 2.5, '2019-12-29 10:14:40', 'AC'),
+(38, 11, 3, 11, 2.5, 3, '2019-12-29 10:18:21', 'AC'),
+(39, 11, 3, 11, 3, 5, '2019-12-29 10:21:40', 'AC'),
+(40, 11, 3, 11, 5, 15, '2019-12-29 10:24:36', 'AC');
 
 -- --------------------------------------------------------
 
@@ -704,7 +703,7 @@ INSERT INTO `ve_precios_porcentajes` (`id`, `idve_producto`, `porcentaje`, `prec
 (8, 2, 42, 243, '2019-09-12', 'AC'),
 (9, 2, 50, 220, '2019-09-12', 'AC'),
 (10, 2, 100, 412, '2019-09-12', 'AC'),
-(11, 3, 25, 225, '2019-09-12', 'AC'),
+(11, 3, 25, 15, '2019-09-12', 'AC'),
 (12, 3, 35, 202, '2019-09-12', 'AC'),
 (13, 3, 42, 185, '2019-09-12', 'AC'),
 (14, 3, 50, 166, '2019-09-12', 'AC'),
