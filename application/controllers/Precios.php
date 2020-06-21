@@ -64,7 +64,7 @@ class Precios extends CI_Controller
 				//$option.="<option value = '".$fila->id."'> % ".$fila->porcentaje." - Precio ".$fila->precio_porcentaje."</option>";	
 				$option.= '<tr><td >'.$nl++.'</td><td >'.$fila->porcentaje.'</td><td >'.$fila->precio_porcentaje."</td><td><input type = 'number' class='form-control' name = '".$fila->id."' value = '".$fila->precio_porcentaje."'></td></tr>";	
 			}								
-		}	
+		}	 
 		$datos ='[{ 
 			     "id":"'.$filas[0]->id.'",
 				 "codad_empresa":"'.$filas[0]->codad_empresa.'",

@@ -2,6 +2,7 @@ var base_url;
 var swalaValidacion = '';
 var validarci = false;
 var valor = ""; 
+var tipoporcentaje;
 function baseurl(enlace)
 { 
   base_url = enlace;  
@@ -72,10 +73,24 @@ function accionesformulario()
         });
     });
 }
+
+function cargaracumulador()
+{
+    var enlace = base_url + "ventas/listaacumulador";
+    $.ajax({
+        type: "GET",
+        url: enlace,        
+        success: function(data) 
+        {
+            $('#tablaproductos').html(data);
+        }
+    }); 
+}
 function formactualizar(idproducto)
 {
     $('#compra').val('');
     $('#venta').val('');
+    $('#cantidad').val('');
     $('#mensajeerror').hide();
     swalaValidacion="";
 	var enlace = base_url + "ventas/datosproducto";
@@ -110,6 +125,7 @@ function formactualizar(idproducto)
                             $('#linea2').val(datos.sabor);
                             $('#almacen').val(datos.saldo);
                             $('#porcentaje').html(datos.opcionprecios);
+                            tipoporcentaje = datos.precioporcentaje;
                             if(datos.precioporcentaje == 1)
                             { 
                                 $('#idprocentajeselect').show();
@@ -153,15 +169,13 @@ function Guardarventa()
             success: function(data)  
             {              
                 var result = JSON.parse(data);
-                $.each(result, function(i, datos){
-                   alert(datos.resultado);               
+                $.each(result, function(i, datos){                                  
                     if(datos.resultado == 1)
-                    {
-                        $('#tablaproductos').html(datos.valor);          
+                    {                        
                         $('#venta').val(''); 
                         $('#cantidad').val('');
                         $('#fechaven').val('');
-                        swal('SE REGISTRO CORRECTAMENTE');                        
+                       // swal('SE REGISTRO CORRECTAMENTE');                        
                         $('#actualizarcantidad').modal('hide');
                     }
                     else
@@ -172,10 +186,11 @@ function Guardarventa()
                 });             
             }
         });
+        cargaracumulador();
         
     }
     else
-    {        
+    {
        $('#mensajeerror').html(swalaValidacion);
        $('#mensajeerror').show();
        swalaValidacion="";
@@ -184,14 +199,17 @@ function Guardarventa()
 
 function validarFormulario(){
     var todook = true;   
-       if($('#porcentaje').val()=='-1'){
+    if (tipoporcentaje == 1)
+    {
+        if($('#porcentaje').val()=='-1'){
             todook = false;
             swalaValidacion += "* Seleccionar un porcentaje <br>";
-        }      
-        if($('#cantidad').val()==''){
-            todook = false;
-            swalaValidacion += "* Completar la cantidad <br>";
-        }    
+        }
+    }      
+    if($('#cantidad').val()==''){
+        todook = false;
+        swalaValidacion += "* Completar la cantidad <br>";
+    }    
     return todook;
 }
 function eliminar(idvir)

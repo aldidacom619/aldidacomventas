@@ -132,8 +132,7 @@ class Ventas extends CI_Controller
 			$precios = $this->ventas_model->select_totales_id($id_pro);
 			$compra = $precios[0]->compra;
 			$saldo_producto = $this->ventas_model->select_almacen_totales_id_dos($id_pro);
-			$saldo_total = $saldo_producto[0]->saldo;
-			$datos = "";
+			$saldo_total = $saldo_producto[0]->saldo;			
 			$mensaje1 = "";
 			if(is_numeric($cantidad))
 			{	
@@ -146,9 +145,7 @@ class Ventas extends CI_Controller
 					if (($this->ventas_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
 					{
 						$insert = $this->ventas_model->registrarproductosacumulador($empresa,$id_usu,$id_pro,$tieneporcentaje,$porcentaje,$cantidad,$compra,$venta,"AC");
-					}
-					$acumulador = selec_configuracion($empresa,"VISTA ACUMULADOR VENTA");
-					$datos = $this->$acumulador($empresa,$id_usu);		
+					}						
 					$resul = 1;
 				}
 				else
@@ -162,11 +159,11 @@ class Ventas extends CI_Controller
 				$resul = 2; 
 				$mensaje1 = "Valor de cantidad no es valida";
 			}
-			$datos = "";
+			//$datos = "";
 			$resultado ='[{
-				     "resultado":"'.$resul.'",
-					 "mensaje":"'.$mensaje1.'",
-					 "valor":"'.$datos.'"}]';
+					     "resultado":"'.$resul.'",
+						 "mensaje":"'.$mensaje1.'"
+						 }]';
 			echo $resultado;
 			
 	}
@@ -175,15 +172,15 @@ class Ventas extends CI_Controller
 		$id_pro = $this->input->post('id');
 		$cantidad = $this->input->post('cant');
 		$saldo_producto = $this->ventas_model->select_almacen_totales_id_dos($id_pro);
-			$saldo_total = $saldo_producto[0]->saldo;
-			if($cantidad <= $saldo_total)
-			{
-				echo 2;		
-			}
-			else
-			{
-				echo 0;
-			}
+		$saldo_total = $saldo_producto[0]->saldo;
+		if($cantidad <= $saldo_total)
+		{
+			echo 2;		
+		}
+		else
+		{
+			echo 0;
+		}
 
 	}
 	function eliminarproductoacumulador()
@@ -210,7 +207,8 @@ class Ventas extends CI_Controller
 		$empresa = $this->session->userdata('codad_empresa');
 		$id_usu = $this->session->userdata('id');
 		$con = 0;
-		if($dato = $this->ventas_model->listaproductoselecionado($empresa,$id_usu))
+		$listaproductos = selec_configuracion($empresa,"MODELO LISTA PRODUCTOS SELECCIONADOS");
+		if($dato = $this->ventas_model->$listaproductos($empresa,$id_usu))
 		{
 			$num_max = $this->ventas_model->num_venta_max($empresa); 
 			$numero_venta = $num_max[0]->maximo + 1;
@@ -284,7 +282,6 @@ class Ventas extends CI_Controller
 	}
 	function maximaventa()
 	{
-		//echo empresa_valoracion(2);
 		$empresa = $this->session->userdata('codad_empresa');
 		$num_max = $this->ventas_model->num_venta_max($empresa); 
 		$numero = $num_max[0]->maximo + 1;
@@ -387,7 +384,7 @@ class Ventas extends CI_Controller
 					                    <td style="text-align: center;"colspan="3"><button class="btn-primary" onclick="cancelaractualizacion()">Cancelar Venta</button></td>
 					                    <td colspan="6"></td>
 					              </tr></tbody>';
-					}					
+					}				
 		return $retorno;
 	}
 }	

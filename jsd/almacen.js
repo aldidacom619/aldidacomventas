@@ -70,11 +70,26 @@ function accionesformulario()
             }
         });
     });
+    cargaracumulador();
+}
+function cargaracumulador()
+{
+    var enlace = base_url + "almacen/listaacumulador";
+    $.ajax({
+        type: "GET",
+        url: enlace,        
+        success: function(data) 
+        {
+            $('#tablaproductos').html(data);
+        }
+    }); 
 }
 function formactualizar(idproducto)
 {
     $('#compra').val('');
     $('#venta').val('');
+    $('#cantidad').val('');
+    $('#fechaven').val('');
 	var enlace = base_url + "almacen/datosproducto";
         $.ajax({
             type: "GET",
@@ -140,16 +155,14 @@ function Guardaractualizacion()
             data: datos,
             success: function(data)  
             {
-                //swal(data);
-                $('#tablaproductos').html(data);          
-                $('#compra').val('');
-                $('#venta').val('');
-                $('#cantidad').val('');
-                $('#fechaven').val('');
-                swal('SE REGISTRO CORRECTAMENTE');
+                var result = JSON.parse(data);
+                    $.each(result, function(i, datos){
+                        swal(datos.mensaje);
+                    });                   
                 $('#actualizarcantidad').modal('hide');
             }
         });
+        cargaracumulador();
     }
     else
     {
@@ -201,7 +214,7 @@ function eliminar(idvir)
                 swal('El producto se elimino correctamente');
                 $('#tablaproductos').html(data);
             }
-    });
+        });        
 }
 function cancelaractualizacion()
 {
@@ -226,7 +239,10 @@ function realizaractualizacion()
                 url: enlace,                 
                 success: function(data) 
                 {
-                    swal(data);
+                    var result = JSON.parse(data);
+                    $.each(result, function(i, datos){
+                        swal(datos.mensaje);
+                    });    
                     window.setTimeout('location.reload()', 500);
                 }
         });

@@ -109,7 +109,7 @@
                 <div class="col-lg-6">            
                     <div class="form-group">
                         <label>Nuevo Precio </label>
-                        <input type="number" class="form-control" id="nuevo_precio" name="nuevo_precio" required="required">
+                        <input type="text" class="form-control" id="nuevo_precio" name="nuevo_precio" required="required">
                     </div>                     
                 </div>                
             </div>
@@ -119,7 +119,7 @@
             <button id="btnGuardaractualizacion" type="button" class="btn btn-primary" onclick='Guardarventa()'><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</button>
         </div>
     </div>
-            </div>
+            </div> 
         </div>
     </div>           
             

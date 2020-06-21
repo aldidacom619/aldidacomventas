@@ -51,7 +51,7 @@ class Almacen extends CI_Controller
 		$id_pro = $this->input->get('id');
 
 		
-		if (!($this->almacen_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
+		if (($this->almacen_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
 		{
 			echo 1;
 		}	
@@ -109,13 +109,12 @@ class Almacen extends CI_Controller
 			$id_pro = $this->input->get('id_prod');
 			$tieneporcentaje = $this->input->get('tieneporcentaje');
 			$vencimiento = $this->input->get('vencimiento');
-
 			$porcentaje = $this->input->get('porcentaje');
 			$compra = $this->input->get('compra');
 			$cantidad = $this->input->get('cantidad');
 			$venta = $this->input->get('venta');			
 			$fechaven = $this->input->get('fechaven');		
-
+			$mensaje = "";
 			if($tieneporcentaje == 0)
 			{
 				$porcentaje = 0;
@@ -124,15 +123,25 @@ class Almacen extends CI_Controller
 			{
 				$fechaven = '';
 			}					
-			if(is_int($cantidad))
-			{	
-				if (($this->almacen_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
+			if(is_numeric($cantidad))
+			{					
+				if (!($this->almacen_model->verproductoselecionado($empresa,$id_usu,$id_pro)))
 				{
 					$insert = $this->almacen_model->registraractualizacionacumulador($empresa,$id_usu,$id_pro,$tieneporcentaje,$porcentaje,$cantidad,$compra,$venta,$vencimiento,$fechaven,"AC");
+					$mensaje = "Se realizó correctamente el registro";
 				}	
+				else
+				{
+					$mensaje = "El producto ya fue seleccionado";	
+				}
 			}
-			$acumulador = selec_configuracion($empresa,"VISTA ACUMULADOR ALMACEN");
-			echo $this->$acumulador($empresa,$id_usu);					
+			else
+			{
+				$mensaje = "El valor de la cantidad no es correcto.";
+			}
+			$datos ='[{
+				     "mensaje":"'.$mensaje.'"}]';
+			echo $datos;			
 	}
 	
 	
@@ -188,8 +197,12 @@ class Almacen extends CI_Controller
 				$con ++;			
              }
 		}
-		$eliminar = $this->almacen_model->cancelarproductoacumulador($empresa,$id_usu);		
-		echo "Se actualizaron: ".$con." productos en almacen";
+		$eliminar = $this->almacen_model->cancelarproductoacumulador($empresa,$id_usu);	
+		$mensaje = "Se actualizaron: ".$con." productos en almacen";
+		$datos ='[{
+				     "mensaje":"'.$mensaje.'"}]';
+		echo $datos;	
+		
 	}
 	function listaacumulador()
 	{

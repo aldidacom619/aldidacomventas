@@ -34,15 +34,16 @@ class Almacen_model extends CI_Model
 	function verproductoselecionado($empresa,$idad_usuario,$idve_producto)
 	{
 		$this->db->where('codad_empresa',$empresa);
-		$this->db->where('idve_producto',$idve_producto);
+		$this->db->where('idve_producto',$idve_producto); 
 		$this->db->where('idad_usuario',$idad_usuario);
 		$query = $this->db->get('ve_acumulador_almacen'); 
-		if($query->num_rows()>0){
+		return $query->result();
+		/*if($query->num_rows()>0){
 			return false;
 		}
 		else{
 			return true;
-		}
+		}*/
 	}
 	function select_almacen_totales_id($idve_producto)
 	{

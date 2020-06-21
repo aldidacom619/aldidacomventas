@@ -41,6 +41,16 @@ function accionesformulario()
             $('#venta').val('');                  
          }         
     });
+    $('#nuevo_precio').keyup(function () 
+    {
+         var tem = $('#nuevo_precio').val(); 
+         alert(tem);
+          var RE = /^[0-9]*$/;
+         if (!(RE.test(tem)))
+         {
+            $('#nuevo_precio').val('');                  
+         }             
+    });
     $('#porcentaje').change(function () 
     {
       var porcentaje = $('#porcentaje').val();
