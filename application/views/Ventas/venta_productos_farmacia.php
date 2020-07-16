@@ -8,6 +8,7 @@
         </div>
                 <!-- /.col-lg-12 -->
     </div>
+    <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -24,7 +25,6 @@
             </div>
         </div>
     </div>
-    <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -45,8 +45,8 @@
                                     <th>Presentacion</th>
                                     <th>Linea</th>
                                     
-                                     <th>Precio Venta</th>                                            
-                                    <th>Cantidad en Almacen</th>                                
+                                     <th>Precio</th>                                            
+                                    <th>Cantidad</th>                                
                                                                        
                                 </tr>
                             </thead>
@@ -75,6 +75,7 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
+
     <div class="modal fade" id="actualizarcantidad" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

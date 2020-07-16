@@ -205,7 +205,7 @@ class Ventas extends CI_Controller
 		$fecha =  fecha();
 		$fecha_hora =  fecha_hora();
 		$empresa = $this->session->userdata('codad_empresa');
-		$id_usu = $this->session->userdata('id');
+		$id_usu = $this->session->userdata('id'); 
 		$con = 0;
 		$listaproductos = selec_configuracion($empresa,"MODELO LISTA PRODUCTOS SELECCIONADOS");
 		if($dato = $this->ventas_model->$listaproductos($empresa,$id_usu))
@@ -235,7 +235,13 @@ class Ventas extends CI_Controller
              }
 		}
 		$eliminar = $this->ventas_model->cancelarproductoacumulador($empresa,$id_usu);		
-		echo "Se registro la venta de: ".$con." producto(s)";
+		$mensaje = "Se registro la venta de: ".$con." producto(s)";
+		$resultado = 1;
+		$resultado ='[{
+				       "resultado":"'.$resultado.'",
+					   "mensaje":"'.$mensaje.'"
+					 }]';
+		echo $resultado;		
 	}
 	function listaacumulador()
 	{

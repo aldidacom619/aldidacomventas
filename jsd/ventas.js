@@ -246,11 +246,14 @@ function realizaractualizacion()
     {
         var enlace = base_url + "ventas/registrar_ingreso";
         $.ajax({
-                type: "GET",
+                type: "POST",
                 url: enlace,                 
                 success: function(data) 
                 {
-                    swal(data);
+                    var result = JSON.parse(data);
+                    $.each(result, function(i, datos){                                  
+                        swal(datos.mensaje);                        
+                    }); 
                     window.setTimeout('location.reload()', 500);
                 }
         });
