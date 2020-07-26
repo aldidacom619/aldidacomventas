@@ -48,7 +48,7 @@ class Ventas extends CI_Controller
 	{
 		$valor = $this->input->post('val');
 		$empresa = $this->session->userdata('codad_empresa');
-		//$valor = "aspi";
+		//$valor = "amoxicilina";
 		$dato['totales'] = $this->ventas_model->almacen_totales_farmacia_busqueda($empresa,$valor);
 		$this->load->view("Ventas/busquedaproducto",$dato);
 	}

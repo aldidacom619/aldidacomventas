@@ -41,7 +41,7 @@ class Ventas_model extends CI_Model
 									   and p.idve_linea = l.id	
 									   and p.estado = 'AC'
 									   and p.codad_empresa=".$empresa."
-									   and upper(p.valor1) like upper('%".$valor."%') ");	
+									   and CONCAT(upper(p.valor1),' ',upper(p.valor2)) like upper('%".$valor."%') ");	
         return $query->result();
 	}
 	function almacen_totales_valoracion($empresa)

@@ -3,8 +3,8 @@
 <tr>
     <td ><button onclick='formactualizar(<?= $fila->idve_producto?>)' class="glyphicon glyphicon-shopping-cart"><?= " ".$n++?></button></td> 
     
-    <td ><?= $fila->valor2?></td>
     <td ><?= $fila->valor1?></td>
+    <td ><?= $fila->valor2?></td>
   
     <td ><?= $fila->composicion?></td>
     <td ><?= $fila->presentacion?></td>
