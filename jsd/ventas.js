@@ -75,17 +75,24 @@ function accionesformulario()
     });
     $('#buscarproducto').keyup(function () 
     {
-      var valor = $('#buscarproducto').val();
-      var enlace = base_url + "ventas/buscarproducto";
-        $.ajax({
-            type: "POST",
-            url: enlace,
-             data: {val:valor},
-            success: function(data) 
-            {
-                $('#tablaresultados').html(data);                    
-            }
-        });
+       var valor = $('#buscarproducto').val();
+        if(valor.length >2 )
+        {
+        var enlace = base_url + "ventas/buscarproducto";
+            $.ajax({
+                type: "POST",
+                url: enlace,
+                 data: {val:valor},
+                success: function(data) 
+                {
+                    $('#tablaresultados').html(data);                    
+                }
+            });
+        }
+        else
+        {
+            $('#tablaresultados').html('');
+        }
     });
 }
 
