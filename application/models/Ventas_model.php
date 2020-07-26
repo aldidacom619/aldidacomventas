@@ -26,9 +26,22 @@ class Ventas_model extends CI_Model
 									       ve_totales t,
 									       ve_linea_producto l
 									 where p.id = t.idve_producto
-									   and p.idve_linea = l.id									 
+									   and p.idve_linea = l.id	
 									   and p.estado = 'AC'
 									   and p.codad_empresa=".$empresa);	
+        return $query->result();
+	}
+	function almacen_totales_farmacia_busqueda($empresa,$valor)
+	{
+		$query = $this->db->query("select *
+									  from ve_productos p, 
+									       ve_totales t,
+									       ve_linea_producto l
+									 where p.id = t.idve_producto
+									   and p.idve_linea = l.id	
+									   and p.estado = 'AC'
+									   and p.codad_empresa=".$empresa."
+									   and upper(p.valor1) like upper('%".$valor."%') ");	
         return $query->result();
 	}
 	function almacen_totales_valoracion($empresa)

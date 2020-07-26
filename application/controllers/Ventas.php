@@ -33,16 +33,24 @@ class Ventas extends CI_Controller
 			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
 			$metodo1 = selec_configuracion($empresa,"MODELO VENTA PRODUCTOS TOTALES");
 			$vista   = selec_configuracion($empresa,"VISTA VENTA PRODUCTOS");
-			$dato['totales'] = $this->ventas_model->$metodo1($empresa);			
+			//$dato['totales'] = $this->ventas_model->$metodo1($empresa);			
 			$this->load->view("Inicio/cabecera");				
 			$this->load->view("Inicio/menu",$dato);		
-			$this->load->view("Ventas/".$vista,$dato);		
+			$this->load->view("Ventas/".$vista);		
 			$this->load->view("Inicio/pie");
 		}
 		else
 		{
 			redirect("inicio");
 		}
+	}
+	function buscarproducto()
+	{
+		$valor = $this->input->post('val');
+		$empresa = $this->session->userdata('codad_empresa');
+		//$valor = "aspi";
+		$dato['totales'] = $this->ventas_model->almacen_totales_farmacia_busqueda($empresa,$valor);
+		$this->load->view("Ventas/busquedaproducto",$dato);
 	}
 	function datosproducto()
 	{

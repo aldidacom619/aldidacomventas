@@ -32,9 +32,17 @@
                     Lista de Productos
                 </div>
                 <!-- /.panel-heading -->
+                
                 <div class="panel-body">
-                    <div class="dataTable_wrapper">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    
+                    <div class="row">
+                <div class="col-lg-2">
+                <label>Buscar Producto</label>
+                <input class="form-control" id="buscarproducto" name="buscarproducto" >
+                </div>
+
+                </div><div class="table-responsive">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-examples">
                             <thead>
                                 <tr>
                                     <th># Opccion</th>
@@ -50,22 +58,8 @@
                                                                        
                                 </tr>
                             </thead>
-                            <tbody>
-                                <? $n = 1?>
-                                <? foreach($totales as $fila):?>
-                                <tr>
-                                    <td ><button onclick='formactualizar(<?= $fila->idve_producto?>)' class="glyphicon glyphicon-shopping-cart"><?= " ".$n++?></button></td> 
-                                    
-                                    <td ><?= $fila->valor2?></td>
-                                    <td ><?= $fila->valor1?></td>
-                                  
-                                    <td ><?= $fila->composicion?></td>
-                                    <td ><?= $fila->presentacion?></td>
-                                    <td ><?= $fila->nombre_linea?></td>                                    
-                                       <td style="text-align: right;"><?= $fila->venta?></td>
-                                    <td style="text-align: right;"><?= $fila->saldo?></td>      
-                                </tr>                                    
-                                <?endforeach?>                                      
+                            <tbody id="tablaresultados">
+                                                                     
                             </tbody>
                         </table>
                     </div>
@@ -133,7 +127,7 @@
                 <div class="col-lg-6">            
                     <div class="form-group">
                         <label>Cantidad</label>
-                        <input  type="number" class="form-control" id="cantidad" name="cantidad" required="required">
+                        <input  type="text" class="form-control" id="cantidad" name="cantidad" required="required">
                     </div>                     
                 </div>                
             </div>

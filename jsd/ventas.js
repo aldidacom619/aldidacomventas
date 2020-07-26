@@ -19,6 +19,7 @@ function accionesformulario()
     {
          var tem = $('#cantidad').val(); 
          //var RE = /^\d*\.?\d*$/;
+
          var RE = /^[0-9]*$/;
          if (!(RE.test(tem)))
          {
@@ -69,6 +70,20 @@ function accionesformulario()
                         $('#venta').val(datos.preciocompra);
                        
                     });                    
+            }
+        });
+    });
+    $('#buscarproducto').keyup(function () 
+    {
+      var valor = $('#buscarproducto').val();
+      var enlace = base_url + "ventas/buscarproducto";
+        $.ajax({
+            type: "POST",
+            url: enlace,
+             data: {val:valor},
+            success: function(data) 
+            {
+                $('#tablaresultados').html(data);                    
             }
         });
     });
