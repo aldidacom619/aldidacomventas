@@ -36,11 +36,11 @@
                 <div class="panel-body">
                     
                     <div class="row">
-                <div class="col-lg-2">
+                <div class="col-lg-6">
                 <label>Buscar Producto</label>
                 <input class="form-control" id="buscarproducto" name="buscarproducto" >
                 </div>
-
+                <br>
                 </div><div class="table-responsive">
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-examples">
                             <thead>
