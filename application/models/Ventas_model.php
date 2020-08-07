@@ -238,6 +238,18 @@ class Ventas_model extends CI_Model
 		return  $this->db->update('ve_totales',$data);
 	}
 
+	function arqueoventa($id_usu,$fecha)
+	{
+		$query = $this->db->query("select v.codad_empresa, v.idad_usuario, v.numero_venta,
+										  p.valor1,p.valor2,p.composicion,p.presentacion,v.precio,
+									      v.cantidad,v.total, v.fecha_hora  
+									 from ve_ventas v, ve_productos p
+									where v.idve_producto = p.id
+									  and v.idad_usuario = ".$id_usu." 
+									  and v.fecha = '".$fecha."'
+									order by v.id asc");	
+        return $query->result();
+	}
 	
 }
 ?>

@@ -32,8 +32,8 @@ class Devolucion extends CI_Controller
 			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
 			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
 			$metodo1 = selec_configuracion($empresa,"MODELO VENTA PRODUCTOS TOTALES");
-			$vista   = selec_configuracion($empresa,"VISTA VENTA PRODUCTOS");
-			$dato['totales'] = $this->devolucion_model->$metodo1($empresa);			
+			$vista   = selec_configuracion($empresa,"VISTA VENTA PRODUCTOS");			
+			$dato['totales'] = $this->Devolucion_model->$metodo1($empresa);			
 			$this->load->view("Inicio/cabecera");				
 			$this->load->view("Inicio/menu",$dato);		
 			$this->load->view("Ventas/".$vista,$dato);		

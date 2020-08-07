@@ -401,5 +401,30 @@ class Ventas extends CI_Controller
 					}				
 		return $retorno;
 	}
+	function arqueo()
+	{
+		if(1 == 1)
+		{
+			$id_usu = $this->session->userdata('id');
+			$empresa = $this->session->userdata('codad_empresa');
+			$fecha =  fecha();
+			$dato['id_usu'] = $id_usu;
+			$dato['usuario'] = $this->session->userdata('usuario');
+			$dato['rolescero'] = $this->roles_model->obtener_roles_cero($id_usu);
+			$dato['roles'] = $this->roles_model->obtener_roles($id_usu);
+			$vista = selec_configuracion($empresa,"VISTA ARQUEO VENTA");			
+			$data['totales'] = $this->ventas_model->arqueoventa($id_usu,$fecha);			
+			$data['fecha'] = $fecha;
+			$totales = $this->ventas_model->arqueoventa($id_usu,$fecha);	
+			$this->load->view("Inicio/cabecera");				
+			$this->load->view("Inicio/menu",$dato);		
+			$this->load->view("Ventas/".$vista,$data);		
+			$this->load->view("Inicio/pie");
+		}
+		else
+		{
+			redirect("inicio");
+		}
+	}
 }	
 ?>

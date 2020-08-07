@@ -23,7 +23,7 @@
     $time = time(); 
     $fecha =  mdate($datestring, $time);*/
     $fecha = date('Y-m-j H:i:s');
-    $nuevafecha = strtotime ( '-4 hour' , strtotime ( $fecha ) ) ;
+    $nuevafecha = strtotime ( '-6 hour' , strtotime ( $fecha ) ) ;
     $fecha = date ( 'Y-m-j' , $nuevafecha );
     return $fecha;
  }
@@ -33,7 +33,7 @@
     $time = time(); 
     $fecha =  mdate($datestring, $time);*/
     $fecha = date('Y-m-j H:i:s');
-    $nuevafecha = strtotime ( '-4 hour' , strtotime ( $fecha ) ) ;
+    $nuevafecha = strtotime ( '-6 hour' , strtotime ( $fecha ) ) ;
     $fecha = date ( 'Y-m-j H:i:s' , $nuevafecha );
     return $fecha;
  }
